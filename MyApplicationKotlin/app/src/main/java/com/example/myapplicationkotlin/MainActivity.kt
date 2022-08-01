@@ -113,3 +113,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+// 移除自带的顶部导航栏

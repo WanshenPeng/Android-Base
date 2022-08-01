@@ -10,6 +10,11 @@ class NewApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         Log.i(TAG, "NewApplication Start")
+
+        // 监听应用内所有Activity生命周期，registActivityLife
+        //registerActivityLifecycleCallbacks()
     }
+
+
 
 }
