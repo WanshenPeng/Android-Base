@@ -11,10 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplicationKotlin">
         <activity
-            android:name=".InputActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".BaseWidgetActivity"
             android:exported="false" />
-        <!-- <activity -->
+        <activity
+            android:name=".InputActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" /> <!-- <activity -->
         <!-- android:name=".DisplayMessageActivity" -->
         <!-- android:exported="false" /> -->
         <activity
