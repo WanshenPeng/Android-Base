@@ -9,7 +9,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplicationKotlin">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".AccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateAccessCodeActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ConnectionFailedActivity"
+            android:exported="false" />
         <activity
             android:name=".BaseWidgetActivity"
             android:exported="false" />

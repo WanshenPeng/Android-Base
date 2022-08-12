@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConnectionFailedActivity">
+
+    <ImageView
+        android:id="@+id/icon_connection_failed"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="124dp"
+        android:src="@drawable/icon_connection_failed" />
+
+    <TextView
+        android:layout_width="295dp"
+        android:layout_height="21.5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="268dp"
+        android:gravity="center_horizontal"
+        android:text="WiFi Connection Failed"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:fontFamily="casual" />
+
+    <TextView
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="310.5dp"
+        android:gravity="center_horizontal"
+        android:text="Please double check your WiFi password and try again. "
+        android:textColor="#666666"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:fontFamily="casual" />
+
+    <TextView
+        android:layout_width="335dp"
+        android:layout_height="74dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="379.5dp"
+        android:background="@drawable/connection_failed_textview_drawable"
+        android:gravity="center"
+        android:lineSpacingExtra="6sp"
+        android:text="Public WiFi networks that require web authentication are not supported."
+        android:textColor="#666666"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        app:fontFamily="casual" />
+
+    <Button
+        android:id="@+id/scan_again"
+        android:layout_width="335dp"
+        android:layout_height="44dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="543dp"
+        android:background="@drawable/button_drawable"
+        android:gravity="center"
+        android:text="Scan Again"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:fontFamily="casual" />
+
+    <Button
+        android:id="@+id/exit_setup"
+        android:layout_width="335dp"
+        android:layout_height="44dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="603dp"
+        android:background="@drawable/connection_failed_exit_button_drawable"
+        android:gravity="center"
+        android:onClick="exit"
+        android:text="Exit Setup"
+        android:textColor="#00c389"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:fontFamily="casual" />
+
+
+</RelativeLayout>

@@ -1,16 +1,13 @@
 package com.example.myapplicationkotlin
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Display
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import java.time.LocalDateTime
 import java.time.LocalTime
 
 const val EXTRA_MESSAGE = "com.example.myapplicationkotlin.MESSAGE"
@@ -79,6 +76,34 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "start inputActivity from mainActivity $time")
         resultLauncher.launch(intent)
     }
+
+    fun intoBaseWidgetActivity(view: View){
+        val intent = Intent(this, BaseWidgetActivity::class.java)
+        val time = LocalTime.now().toString()
+        Log.i(TAG, "start BaseWidgetActivity from mainActivity $time")
+        startActivity(intent)
+    }
+
+    fun intoConnectionFailedActivity(view: View){
+        val intent = Intent(this, ConnectionFailedActivity::class.java)
+        val time = LocalTime.now().toString()
+        Log.i(TAG, "start ConnectionActivity from mainActivity $time")
+        startActivity(intent)
+    }
+    fun intoCreateAccessCodeActivity(view: View){
+        val intent = Intent(this, CreateAccessCodeActivity::class.java)
+        val time = LocalTime.now().toString()
+        Log.i(TAG, "start CreateAccessCodeActivity from mainActivity $time")
+        startActivity(intent)
+    }
+
+    fun intoAccessActivity(view: View){
+        val intent = Intent(this, AccessActivity::class.java)
+        val time = LocalTime.now().toString()
+        Log.i(TAG, "start AccessActivity from mainActivity $time")
+        startActivity(intent)
+    }
+
 
     val resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

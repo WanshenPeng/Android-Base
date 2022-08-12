@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    tools:context=".AccessActivity">
+
+    <include
+        android:id="@+id/access_toolbar"
+        layout="@layout/access_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swip_refresh_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/access_toolbar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/bottom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_home_nor"
+            android:paddingTop="7dp"
+            android:text="Dashboard"
+            android:textColor="#666666"
+            android:textSize="11sp"
+            android:textStyle="normal"
+            android:background="#ffffff"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_access_sel"
+            android:paddingTop="7dp"
+            android:gravity="center"
+            android:text="Dashboard"
+            android:textColor="#666666"
+            android:textSize="11sp"
+            android:textStyle="normal"
+            android:background="#ffffff"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_activity_nor"
+            android:paddingTop="7dp"
+            android:gravity="center"
+            android:text="Dashboard"
+            android:textColor="#666666"
+            android:textSize="11sp"
+            android:textStyle="normal"
+            android:background="#ffffff"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom_toolbar"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:layout_marginEnd="0dp"-->
+<!--        android:background="#ffffff"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:menu="@menu/bottom_nav_menu"-->
+<!--        app:itemTextColor="@color/access_color"-->
+<!--        app:itemIconTint="@color/access_color"/>-->
+</androidx.constraintlayout.widget.ConstraintLayout>
