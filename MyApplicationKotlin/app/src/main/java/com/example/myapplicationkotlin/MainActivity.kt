@@ -8,6 +8,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.myapplicationkotlin.nested.NestedScrollView
+import com.example.myapplicationkotlin.view.MyViewActivity
+import com.example.myapplicationkotlin.webview.WebViewActivity
+import com.example.myapplicationkotlin.wifitest.WifiTestActivity
 import java.time.LocalTime
 
 const val EXTRA_MESSAGE = "com.example.myapplicationkotlin.MESSAGE"
@@ -25,39 +29,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         gameState = savedInstanceState?.getString(GAME_STATE_KEY)
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "mainActivity create $time")
+        Log.i(TAG, "mainActivity create")
 
     }
 
     override fun onStart() {
         super.onStart()
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "mainActivity start $time")
+        Log.i(TAG, "mainActivity start ")
     }
 
     override fun onResume() {
         super.onResume()
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "mainActivity resume $time")
+        Log.i(TAG, "mainActivity resume ")
     }
 
     override fun onPause() {
         super.onPause()
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "mainActivity pause $time")
+        Log.i(TAG, "mainActivity pause")
     }
 
     override fun onStop() {
         super.onStop()
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "mainActivity stop $time")
+        Log.i(TAG, "mainActivity stop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "mainActivity destroy $time")
+        Log.i(TAG, "mainActivity destroy")
     }
 
     fun sendMessage(view: View) {
@@ -72,38 +70,55 @@ class MainActivity : AppCompatActivity() {
     fun intoInputActivity(view: View) {
         val intent = Intent(this, InputActivity::class.java)
 //        startActivityForResult(intent, 1) //该方法已被弃用
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "start inputActivity from mainActivity $time")
+        Log.i(TAG, "start inputActivity from mainActivity")
         resultLauncher.launch(intent)
     }
 
-    fun intoBaseWidgetActivity(view: View){
+    fun intoBaseWidgetActivity(view: View) {
         val intent = Intent(this, BaseWidgetActivity::class.java)
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "start BaseWidgetActivity from mainActivity $time")
+        Log.i(TAG, "start BaseWidgetActivity from mainActivity")
         startActivity(intent)
     }
 
-    fun intoConnectionFailedActivity(view: View){
+    fun intoConnectionFailedActivity(view: View) {
         val intent = Intent(this, ConnectionFailedActivity::class.java)
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "start ConnectionActivity from mainActivity $time")
+        Log.i(TAG, "start ConnectionActivity from mainActivity")
         startActivity(intent)
     }
-    fun intoCreateAccessCodeActivity(view: View){
+
+    fun intoCreateAccessCodeActivity(view: View) {
         val intent = Intent(this, CreateAccessCodeActivity::class.java)
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "start CreateAccessCodeActivity from mainActivity $time")
+        Log.i(TAG, "start CreateAccessCodeActivity from mainActivity")
         startActivity(intent)
     }
 
-    fun intoAccessActivity(view: View){
+    fun intoAccessActivity(view: View) {
         val intent = Intent(this, AccessActivity::class.java)
-        val time = LocalTime.now().toString()
-        Log.i(TAG, "start AccessActivity from mainActivity $time")
+        Log.i(TAG, "start AccessActivity from mainActivity")
         startActivity(intent)
     }
 
+    fun intoNestedActivity(view: View) {
+        val intent = Intent(this, NestedScrollView::class.java)
+        Log.i(TAG, "start AccessActivity from mainActivity ")
+        startActivity(intent)
+    }
+
+    fun intoWifiTestActivity(view: View) {
+        val intent = Intent(this, WifiTestActivity::class.java)
+        Log.i(TAG, "start WifiTestActivity from mainActivity ")
+        startActivity(intent)
+    }
+
+    fun intoWebViewActivity(view: View) {
+        val intent = Intent(this, WebViewActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun intoMyViewActivity(view: View){
+        val intent = Intent(this, MyViewActivity::class.java)
+        startActivity(intent)
+    }
 
     val resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

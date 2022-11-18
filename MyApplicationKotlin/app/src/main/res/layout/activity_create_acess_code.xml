@@ -22,7 +22,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/create_access_code_toolbar"
+        layout="@layout/access_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />

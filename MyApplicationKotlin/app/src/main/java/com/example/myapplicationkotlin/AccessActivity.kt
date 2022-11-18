@@ -35,8 +35,6 @@ class AccessActivity : AppCompatActivity() {
             updateOperation(mRecyclerView, adapter)
             swipRefreshLayout.isRefreshing = false
         }
-
-
     }
 
     private fun updateOperation(mRecyclerView: RecyclerView, adapter: AccessAdapter){
