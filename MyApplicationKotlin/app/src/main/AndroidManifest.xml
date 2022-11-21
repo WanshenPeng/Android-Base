@@ -20,6 +20,13 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".service.MyServiceActivity"
+            android:exported="false" />
+        <service
+            android:name=".service.MyService"
+            android:exported="false" />
+
+        <activity
             android:name=".view.MyViewActivity"
             android:exported="false" />
         <activity

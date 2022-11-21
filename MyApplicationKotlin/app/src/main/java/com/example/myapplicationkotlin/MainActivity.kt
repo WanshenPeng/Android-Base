@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.myapplicationkotlin.nested.NestedScrollView
+import com.example.myapplicationkotlin.service.MyServiceActivity
 import com.example.myapplicationkotlin.view.MyViewActivity
 import com.example.myapplicationkotlin.webview.WebViewActivity
 import com.example.myapplicationkotlin.wifitest.WifiTestActivity
@@ -117,6 +118,11 @@ class MainActivity : AppCompatActivity() {
 
     fun intoMyViewActivity(view: View){
         val intent = Intent(this, MyViewActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun intoMyServiceActivity(view: View){
+        val intent = Intent(this, MyServiceActivity::class.java)
         startActivity(intent)
     }
 
