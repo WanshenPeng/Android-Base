@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".NewApplication"
         android:allowBackup="true"
@@ -26,6 +28,18 @@
             android:name=".service.MyService"
             android:exported="false" />
 
+        <activity
+            android:name="com.example.myapplication.handler.AsyncTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.myapplication.handler.MyHandlerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.myapplication.lottie.LottieAnimationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.myapplication.permission.PermissionActivity"
+            android:exported="false" />
         <activity
             android:name=".view.MyViewActivity"
             android:exported="false" />

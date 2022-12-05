@@ -11,4 +11,9 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="camera_and_location_rationale">camera_and_location_rationale</string>
+    <string name="returned_from_app_settings_to_activity">returned_from_app_settings_to_activity</string>
+    <string name="rationale_ask_ok">OK</string>
+    <string name="rationale_ask_cancel">Cancel</string>
 </resources>

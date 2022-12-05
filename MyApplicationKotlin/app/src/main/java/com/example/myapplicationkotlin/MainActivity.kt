@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.myapplication.handler.AsyncTaskActivity
+import com.example.myapplication.handler.MyHandlerActivity
+import com.example.myapplication.lottie.LottieAnimationActivity
+import com.example.myapplication.permission.PermissionActivity
 import com.example.myapplicationkotlin.nested.NestedScrollView
 import com.example.myapplicationkotlin.service.MyServiceActivity
 import com.example.myapplicationkotlin.view.MyViewActivity
@@ -32,6 +37,22 @@ class MainActivity : AppCompatActivity() {
         gameState = savedInstanceState?.getString(GAME_STATE_KEY)
         Log.i(TAG, "mainActivity create")
 
+        findViewById<Button>(R.id.handler_view).setOnClickListener {
+            val intent = Intent(this, MyHandlerActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<Button>(R.id.async_task_view).setOnClickListener {
+            val intent = Intent(this, AsyncTaskActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<Button>(R.id.lottie).setOnClickListener {
+            val intent = Intent(this, LottieAnimationActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<Button>(R.id.permission).setOnClickListener {
+            val intent = Intent(this, PermissionActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onStart() {

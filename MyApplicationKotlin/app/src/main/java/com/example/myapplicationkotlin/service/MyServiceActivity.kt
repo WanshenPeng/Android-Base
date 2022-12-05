@@ -34,6 +34,9 @@ class MyServiceActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.result).text = result
             }
         })
+
+        registerReceiver(myServiceBroadcastReceiver, filter)
+
     }
 
     private fun startMyService(number: String) {
@@ -49,12 +52,17 @@ class MyServiceActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        registerReceiver(myServiceBroadcastReceiver, filter)
     }
 
     override fun onPause() {
+        Log.i("MyServiceActivity", "onPause")
         super.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
         unregisterReceiver(myServiceBroadcastReceiver)
         stopMyService()
+        Log.i("MyServiceActivity", "onDestroy")
     }
 }

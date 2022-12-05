@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DiscountView">
+        <attr name="product_text" format="string" />
+        <attr name="product_text_size" format="dimension" />
+        <attr name="product_text_color" format="color" />
+        <attr name="price_text" format="string" />
+        <attr name="price_text_size" format="dimension" />
+        <attr name="price_text_color" format="color" />
+        <attr name="tag_text" format="string" />
+        <attr name="tag_text_size" format="dimension" />
+        <attr name="tag_text_color" format="color" />
+        <attr name="tag_background_color" format="color" />
+    </declare-styleable>
+
+</resources>

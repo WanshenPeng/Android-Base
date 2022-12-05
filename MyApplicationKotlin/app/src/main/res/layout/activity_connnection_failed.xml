@@ -24,7 +24,7 @@
         android:textColor="#333333"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:fontFamily="casual" />
+        app:fontFamily="@font/font_medium" />
 
     <TextView
         android:layout_width="319dp"
@@ -36,7 +36,7 @@
         android:textColor="#666666"
         android:textSize="16sp"
         android:textStyle="normal"
-        app:fontFamily="casual" />
+        app:fontFamily="@font/font_medium" />
 
     <TextView
         android:layout_width="335dp"
@@ -50,7 +50,7 @@
         android:textColor="#666666"
         android:textSize="15sp"
         android:textStyle="normal"
-        app:fontFamily="casual" />
+        app:fontFamily="@font/font_medium" />
 
     <Button
         android:id="@+id/scan_again"
@@ -64,7 +64,7 @@
         android:textColor="#ffffff"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:fontFamily="casual" />
+        app:fontFamily="@font/font_medium" />
 
     <Button
         android:id="@+id/exit_setup"
@@ -79,7 +79,7 @@
         android:textColor="#00c389"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:fontFamily="casual" />
+        app:fontFamily="@font/font_medium" />
 
 
 </RelativeLayout>
