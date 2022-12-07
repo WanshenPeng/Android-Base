@@ -37,6 +37,11 @@ class MyServiceActivity : AppCompatActivity() {
 
         registerReceiver(myServiceBroadcastReceiver, filter)
 
+
+        findViewById<Button>(R.id.foreground).setOnClickListener {
+            val intent = Intent(this, ForegroundServiceActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun startMyService(number: String) {

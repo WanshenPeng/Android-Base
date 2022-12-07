@@ -16,4 +16,8 @@
     <string name="returned_from_app_settings_to_activity">returned_from_app_settings_to_activity</string>
     <string name="rationale_ask_ok">OK</string>
     <string name="rationale_ask_cancel">Cancel</string>
+
+    <string name="notification_title">Title</string>
+    <string name="notification_message">This is notification message.This is notification message.This is notification message.</string>
+    <string name="ticker_text">This is ticker text.</string>
 </resources>
