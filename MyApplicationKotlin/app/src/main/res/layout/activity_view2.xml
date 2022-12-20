@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view2.View2Activity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_status"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" />
+    <com.example.myapplicationkotlin.view2.TitleBarView
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_text="@string/notification_message"
+        app:title_text_size="@dimen/sp_18"
+        app:right_text_font="@font/font_bold"
+        app:left_image_src="@drawable/icon_return_black"
+        app:right_image_src="@drawable/icon_return_black"
+        />
+</LinearLayout>

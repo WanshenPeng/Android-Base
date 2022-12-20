@@ -21,6 +21,6 @@
         android:layout_marginEnd="16dp"
         tool:text="room"
         android:gravity="center"
-        android:textColor="@color/green"/>
+        android:textColor="@color/color_00c389"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

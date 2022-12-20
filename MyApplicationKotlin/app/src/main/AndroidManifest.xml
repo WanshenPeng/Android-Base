@@ -22,14 +22,24 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view2.View2Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".service.ForegroundServiceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <service android:name=".service.MyForegroundService"
-            android:exported="false"/>
+
+        <service
+            android:name=".service.MyForegroundService"
+            android:exported="false" />
+
         <activity
             android:name=".service.MyServiceActivity"
             android:exported="false" />

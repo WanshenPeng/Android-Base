@@ -31,7 +31,7 @@ class NestedScrollView : AppCompatActivity() {
         recycler2.isNestedScrollingEnabled = false
 
         val swipeRefreshLayout : SwipeRefreshLayout = findViewById(R.id.swipe_layout)
-        swipeRefreshLayout.setColorSchemeResources(R.color.green)
+        swipeRefreshLayout.setColorSchemeResources(R.color.color_00c389)
         swipeRefreshLayout.setOnRefreshListener {
             Log.i("TAG", "recycleView refresh")
             list1.clear()

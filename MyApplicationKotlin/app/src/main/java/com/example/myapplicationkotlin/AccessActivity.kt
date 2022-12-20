@@ -29,7 +29,7 @@ class AccessActivity : AppCompatActivity() {
         mRecyclerView.adapter = adapter
 
         val swipRefreshLayout : SwipeRefreshLayout = findViewById(R.id.swip_refresh_layout)
-        swipRefreshLayout.setColorSchemeResources(R.color.green)
+        swipRefreshLayout.setColorSchemeResources(R.color.color_00c389)
         swipRefreshLayout.setOnRefreshListener {
             Log.i(TAG, "recycleView refresh")
             updateOperation(mRecyclerView, adapter)

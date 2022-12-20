@@ -16,6 +16,7 @@ import com.example.myapplication.permission.PermissionActivity
 import com.example.myapplicationkotlin.nested.NestedScrollView
 import com.example.myapplicationkotlin.service.MyServiceActivity
 import com.example.myapplicationkotlin.view.MyViewActivity
+import com.example.myapplicationkotlin.view2.View2Activity
 import com.example.myapplicationkotlin.webview.WebViewActivity
 import com.example.myapplicationkotlin.wifitest.WifiTestActivity
 import java.time.LocalTime
@@ -51,6 +52,10 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.permission).setOnClickListener {
             val intent = Intent(this, PermissionActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<Button>(R.id.my_view2).setOnClickListener {
+            val intent = Intent(this, View2Activity::class.java)
             startActivity(intent)
         }
     }

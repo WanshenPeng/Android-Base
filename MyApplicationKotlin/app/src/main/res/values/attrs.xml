@@ -13,4 +13,16 @@
         <attr name="tag_background_color" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="TitleBarView">
+        <attr name="left_image_src" format="reference" />
+        <attr name="right_image_src" format="reference" />
+        <attr name="title_text" format="string" />
+        <attr name="title_text_size" format="dimension" />
+        <attr name="title_text_font" format="string" />
+        <attr name="title_text_color" format="color" />
+        <attr name="right_text" format="string" />
+        <attr name="right_text_size" format="integer" />
+        <attr name="right_text_font" format="string" />
+        <attr name="right_text_color" format="color" />
+    </declare-styleable>
 </resources>

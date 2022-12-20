@@ -28,7 +28,7 @@
         app:price_text="$10"
         app:product_text="apple"
         app:product_text_color="@color/red"
-        app:tag_background_color="@color/green"
+        app:tag_background_color="@color/color_00c389"
         app:tag_text="8折" />
 
     <Button
