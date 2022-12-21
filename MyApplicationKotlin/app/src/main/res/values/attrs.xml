@@ -14,15 +14,33 @@
     </declare-styleable>
 
     <declare-styleable name="TitleBarView">
-        <attr name="left_image_src" format="reference" />
-        <attr name="right_image_src" format="reference" />
-        <attr name="title_text" format="string" />
-        <attr name="title_text_size" format="dimension" />
-        <attr name="title_text_font" format="string" />
-        <attr name="title_text_color" format="color" />
-        <attr name="right_text" format="string" />
-        <attr name="right_text_size" format="integer" />
-        <attr name="right_text_font" format="string" />
-        <attr name="right_text_color" format="color" />
+        <attr name="tbv_left_image_src" format="reference" />
+        <attr name="tbv_right_image_src" format="reference" />
+        <attr name="tbv_title_text" format="string" />
+        <attr name="tbv_title_text_size" format="dimension" />
+        <attr name="tbv_title_text_font" format="string" />
+        <attr name="tbv_title_text_color" format="color" />
+        <attr name="tbv_right_text" format="string" />
+        <attr name="tbv_right_text_size" format="dimension" />
+        <attr name="tbv_right_text_font" format="string" />
+        <attr name="tbv_right_text_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="EntranceView">
+        <attr name="ev_left_image_src" format="reference" />
+        <attr name="ev_right_arrow_src" format="reference" />
+        <attr name="ev_point_src" format="reference" />
+        <attr name="ev_text" format="string" />
+        <attr name="ev_text_color" format="color" />
+        <attr name="ev_text_size" format="dimension" />
+        <attr name="ev_text_font" format="string" />
+        <attr name="ev_right_text" format="string" />
+        <attr name="ev_right_text_size" format="dimension" />
+        <attr name="ev_right_text_font" format="string" />
+        <attr name="ev_right_text_color" format="color" />
+        <attr name="ev_padding_left" format="dimension" />
+        <attr name="ev_padding_right" format="dimension" />
+        <attr name="ev_padding_horizontal" format="dimension" />
+        <attr name="ev_divider_line" format="boolean" />
     </declare-styleable>
 </resources>
