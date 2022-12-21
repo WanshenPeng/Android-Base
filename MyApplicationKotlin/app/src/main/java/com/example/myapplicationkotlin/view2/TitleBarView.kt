@@ -109,6 +109,9 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
         return tv_title.text.toString()
     }
 
+    /**
+     * @param size 字体大小资源id
+     */
     fun setTitleTextSize(size: Int) {
         tv_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(size))
     }
@@ -117,8 +120,11 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
         return tv_title.textSize
     }
 
+    /**
+     * @param color 颜色资源id
+     */
     fun setTitleTextColor(color: Int) {
-        tv_title.setTextColor(color)
+        tv_title.setTextColor(context.resources.getColor(color))
     }
 
     fun getTitleTextColor(): Int {
@@ -142,6 +148,9 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
         return tv_right.text.toString()
     }
 
+    /**
+     * @param size 字体大小资源id
+     */
     fun setRightTextSize(size: Int) {
         tv_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(size))
     }
@@ -150,8 +159,11 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
         return tv_right.textSize
     }
 
+    /**
+     * @param color 颜色资源id
+     */
     fun setRightTextColor(color: Int) {
-        tv_right.setTextColor(color)
+        tv_right.setTextColor(context.resources.getColor(color))
     }
 
     fun getRightTextColor(): Int {

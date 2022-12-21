@@ -38,9 +38,7 @@
         <attr name="ev_right_text_size" format="dimension" />
         <attr name="ev_right_text_font" format="string" />
         <attr name="ev_right_text_color" format="color" />
-        <attr name="ev_padding_left" format="dimension" />
-        <attr name="ev_padding_right" format="dimension" />
-        <attr name="ev_padding_horizontal" format="dimension" />
         <attr name="ev_divider_line" format="boolean" />
+        <attr name="ev_divider_line_color" format="color" />
     </declare-styleable>
 </resources>

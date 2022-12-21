@@ -13,6 +13,29 @@
         android:layout_height="1dp"
         android:orientation="horizontal" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:contentInsetStart="@dimen/dp_0"
+        app:contentInsetStartWithNavigation="@dimen/dp_0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/icon_return_black"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="?attr/actionBarSize"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/app_name" />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <com.example.myapplicationkotlin.view2.TitleBarView
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
@@ -23,49 +46,66 @@
         app:tbv_title_text="@string/notification_message"
         app:tbv_title_text_size="@dimen/sp_18" />
 
+    <com.example.myapplicationkotlin.view2.TitleBarView
+        android:id="@+id/title_bar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tbv_left_image_src="@drawable/icon_return_black"
+        app:tbv_right_image_src="@drawable/icon_return_black"
+        app:tbv_right_text="@string/app_name"
+        app:tbv_right_text_font="@font/font_bold"
+        app:tbv_title_text="@string/app_name"
+        app:tbv_title_text_size="@dimen/sp_18" />
+
     <com.example.myapplicationkotlin.view2.EntranceView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
         android:layout_marginTop="@dimen/dp_10"
-        android:background="@drawable/bg_divider_line"
+        android:background="@drawable/bg_entrance_view"
         android:clickable="true"
         android:focusable="true"
-        app:ev_padding_horizontal="@dimen/dp_16"
+        android:paddingHorizontal="@dimen/dp_16"
+        app:ev_divider_line="true"
         app:ev_text="@string/app_name"
         app:ev_text_color="@color/red" />
 
     <com.example.myapplicationkotlin.view2.EntranceView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
-        android:background="@drawable/bg_divider_line"
+        android:background="@drawable/bg_entrance_view"
         android:clickable="true"
         android:focusable="true"
+        android:paddingHorizontal="@dimen/dp_16"
+        app:ev_divider_line="true"
         app:ev_left_image_src="@drawable/icon_mode_heat"
-        app:ev_padding_horizontal="@dimen/dp_16"
         app:ev_right_arrow_src="@drawable/icon_right_arrow_gray"
         app:ev_text="@string/app_name" />
 
     <com.example.myapplicationkotlin.view2.EntranceView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
+        android:background="@drawable/bg_entrance_view"
         android:clickable="true"
         android:focusable="true"
-        app:ev_padding_horizontal="@dimen/dp_16"
+        android:paddingHorizontal="@dimen/dp_16"
+        app:ev_divider_line="true"
         app:ev_right_arrow_src="@drawable/icon_right_arrow_gray"
         app:ev_right_text="@string/title_activity_input"
-        app:ev_divider_line="true"
         app:ev_text="@string/app_name" />
 
     <com.example.myapplicationkotlin.view2.EntranceView
         android:id="@+id/text_entrance_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
-        android:background="@drawable/bg_divider_line"
+        android:background="@drawable/bg_entrance_view"
         android:clickable="true"
         android:focusable="true"
-        app:ev_padding_horizontal="@dimen/dp_16"
+        android:paddingHorizontal="@dimen/dp_16"
+        app:ev_divider_line="true"
+        app:ev_divider_line_color="@color/red"
         app:ev_point_src="@drawable/red_dot_8dp"
-        app:ev_right_text="@string/title_activity_input"
         app:ev_right_arrow_src="@drawable/icon_right_arrow_gray"
+        app:ev_right_text="@string/title_activity_input"
+        app:ev_right_text_color="@color/teal_200"
         app:ev_text="@string/app_name" />
 </LinearLayout>

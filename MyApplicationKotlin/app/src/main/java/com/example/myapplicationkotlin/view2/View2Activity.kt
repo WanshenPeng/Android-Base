@@ -18,5 +18,16 @@ class View2Activity : AppCompatActivity() {
         text_entrance_view.setOnClickListener {
             Toast.makeText(this, "text_entrance_view", Toast.LENGTH_SHORT).show()
         }
+        text_entrance_view.setTextSize(R.dimen.sp_10)
+
+        title_bar.setLeftImageOnClickListener{
+            Toast.makeText(this, "title_bar", Toast.LENGTH_SHORT).show()
+        }
+        title_bar.setRightImageOnClickListener{
+            Toast.makeText(this, "title_bar", Toast.LENGTH_SHORT).show()
+        }
+        toolbar.setNavigationOnClickListener {
+            Toast.makeText(this, "title_bar", Toast.LENGTH_SHORT).show()
+        }
     }
 }
