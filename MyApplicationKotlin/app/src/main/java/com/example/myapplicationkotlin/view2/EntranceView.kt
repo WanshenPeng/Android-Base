@@ -1,15 +1,15 @@
 package com.example.myapplicationkotlin.view2
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import com.example.myapplicationkotlin.R
-import kotlinx.android.synthetic.main.activity_view2.view.*
 import kotlinx.android.synthetic.main.entrance_view.view.*
+import kotlinx.android.synthetic.main.entrance_view.view.divider_line
+import kotlinx.android.synthetic.main.switch_view.view.*
 
 /**
  * Author: Wanshenpeng
@@ -24,7 +24,7 @@ class EntranceView(context: Context, attributes: AttributeSet) :
     init {
         LayoutInflater.from(context).inflate(R.layout.entrance_view, this)
         context.theme.obtainStyledAttributes(attributes, R.styleable.EntranceView, 0, 0).apply {
-            getResourceId(R.styleable.EntranceView_ev_left_image_src, -1).let {
+            getResourceId(R.styleable.EntranceView_evLeftImageSrc, -1).let {
                 if (it == -1) {
                     iv_left.visibility = GONE
                 } else {
@@ -33,45 +33,45 @@ class EntranceView(context: Context, attributes: AttributeSet) :
                 }
             }
             tv_text.apply {
-                text = getString(R.styleable.EntranceView_ev_text)
+                text = getString(R.styleable.EntranceView_evText)
                 setTextSize(
                     TypedValue.COMPLEX_UNIT_PX, getDimension(
-                        R.styleable.EntranceView_ev_text_size,
+                        R.styleable.EntranceView_evTextSize,
                         context.resources.getDimensionPixelSize(R.dimen.sp_16).toFloat()
                     )
                 )
                 setTextColor(
                     getColor(
-                        R.styleable.EntranceView_ev_text_color,
+                        R.styleable.EntranceView_evTextColor,
                         context.resources.getColor(R.color.color_333333)
                     )
                 )
                 typeface = Typeface.create(
-                    getString(R.styleable.EntranceView_ev_text_font),
+                    getString(R.styleable.EntranceView_evTextFont),
                     Typeface.NORMAL
                 )
             }
             tv_right.apply {
-                text = getString(R.styleable.EntranceView_ev_right_text)
+                text = getString(R.styleable.EntranceView_evRightText)
                 visibility = if (text.isNullOrEmpty()) GONE else VISIBLE
                 setTextSize(
                     TypedValue.COMPLEX_UNIT_PX, getDimension(
-                        R.styleable.EntranceView_ev_right_text_size,
+                        R.styleable.EntranceView_evRightTextSize,
                         context.resources.getDimensionPixelSize(R.dimen.sp_16).toFloat()
                     )
                 )
                 setTextColor(
                     getColor(
-                        R.styleable.EntranceView_ev_right_text_color,
+                        R.styleable.EntranceView_evRightTextColor,
                         context.resources.getColor(R.color.color_999999)
                     )
                 )
                 typeface = Typeface.create(
-                    getString(R.styleable.EntranceView_ev_right_text_font),
+                    getString(R.styleable.EntranceView_evRightTextFont),
                     Typeface.NORMAL
                 )
             }
-            getResourceId(R.styleable.EntranceView_ev_point_src, -1).let {
+            getResourceId(R.styleable.EntranceView_evPointSrc, -1).let {
                 if (it == -1) {
                     point.visibility = GONE
                 } else {
@@ -79,7 +79,7 @@ class EntranceView(context: Context, attributes: AttributeSet) :
                     point.setImageResource(it)
                 }
             }
-            getResourceId(R.styleable.EntranceView_ev_right_arrow_src, -1).let {
+            getResourceId(R.styleable.EntranceView_evRightArrowSrc, -1).let {
                 if (it == -1) {
                     right_arrow.visibility = GONE
                 } else {
@@ -89,55 +89,56 @@ class EntranceView(context: Context, attributes: AttributeSet) :
             }
 
             divider_line.visibility =
-                if (getBoolean(R.styleable.EntranceView_ev_divider_line, false)) VISIBLE else GONE
+                if (getBoolean(R.styleable.EntranceView_evDividerLine, false)) VISIBLE else GONE
             divider_line.setBackgroundColor(
                 getColor(
-                    R.styleable.EntranceView_ev_divider_line_color,
+                    R.styleable.EntranceView_evDividerLineColor,
                     context.resources.getColor(R.color.color_ee)
                 )
             )
         }
     }
 
-    fun setLeftImageResource(image: Int) {
+    fun setEvLeftImageSrc(image: Int) {
         iv_left.setImageResource(image)
     }
 
-    fun setRightArrowImageResource(image: Int) {
+    fun setEvRightArrowSrc(image: Int) {
         right_arrow.setImageResource(image)
     }
 
-    fun setPointImageResource(image: Int) {
+    fun setEvPointSrc(image: Int) {
         point.setImageResource(image)
     }
 
-    fun getText(): String {
+    fun getEvText(): String {
         return tv_text.text.toString()
     }
 
-    fun setText(text: String) {
+    fun setEvText(text: String) {
         tv_text.text = text
+        tv_right.visibility = VISIBLE
     }
 
-    fun getTextColor(): Int {
+    fun getEvTextColor(): Int {
         return tv_text.currentTextColor
     }
 
     /**
      * @param color 颜色资源id
      */
-    fun setTextColor(color: Int) {
+    fun setEvTextColor(color: Int) {
         tv_text.setTextColor(context.resources.getColor(color))
     }
 
-    fun getTextSize(): Float {
+    fun getEvTextSize(): Float {
         return tv_text.textSize
     }
 
     /**
      * @param size 字体大小资源id
      */
-    fun setTextSize(size: Int) {
+    fun setEvTextSize(size: Int) {
         tv_text.setTextSize(
             TypedValue.COMPLEX_UNIT_PX,
             context.resources.getDimension(size)
@@ -145,56 +146,60 @@ class EntranceView(context: Context, attributes: AttributeSet) :
         tv_text.textSize
     }
 
-    fun getTextFont(): Typeface? {
+    fun getEvTextFont(): Typeface? {
         return tv_text.typeface
     }
 
-    fun setTextFont(font: String) {
+    fun setEvTextFont(font: String) {
         tv_text.typeface = Typeface.create(font, Typeface.NORMAL)
     }
 
-    fun getRightText(): String {
+    fun getEvRightText(): String {
         return tv_right.text.toString()
     }
 
-    fun setRightText(text: String) {
+    fun setEvRightText(text: String) {
         tv_right.text = text
+        tv_right.visibility = VISIBLE
     }
 
-    fun getRightTextColor(): Int {
+    fun getEvRightTextColor(): Int {
         return tv_right.currentTextColor
     }
 
     /**
      * @param color 颜色资源id
      */
-    fun setRightTextColor(color: Int) {
+    fun setEvRightTextColor(color: Int) {
         tv_right.setTextColor(context.resources.getColor(color))
     }
 
-    fun getRightTextSize(): Float {
+    fun getEvRightTextSize(): Float {
         return tv_right.textSize
     }
 
     /**
      * @param size 字体大小资源id
      */
-    fun setRightTextSize(size: Int) {
+    fun setEvRightTextSize(size: Int) {
         tv_right.setTextSize(
             TypedValue.COMPLEX_UNIT_PX,
             context.resources.getDimension(size)
         )
     }
 
-    fun getRightTextFont(): Typeface? {
+    fun getEvRightTextFont(): Typeface? {
         return tv_right.typeface
     }
 
-    fun setRightTextFont(font: String) {
+    fun setEvRightTextFont(font: String) {
         tv_right.typeface = Typeface.create(font, Typeface.NORMAL)
     }
 
-    fun setDividerLineColor(color: Int){
+    fun setEvDividerLine(visibility: Boolean){
+        divider_line.visibility = if (visibility) VISIBLE else GONE
+    }
+    fun setEvDividerLineColor(color: Int){
         divider_line.setBackgroundColor(context.resources.getColor(color))
     }
 

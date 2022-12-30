@@ -14,31 +14,69 @@
     </declare-styleable>
 
     <declare-styleable name="TitleBarView">
-        <attr name="tbv_left_image_src" format="reference" />
-        <attr name="tbv_right_image_src" format="reference" />
-        <attr name="tbv_title_text" format="string" />
-        <attr name="tbv_title_text_size" format="dimension" />
-        <attr name="tbv_title_text_font" format="string" />
-        <attr name="tbv_title_text_color" format="color" />
-        <attr name="tbv_right_text" format="string" />
-        <attr name="tbv_right_text_size" format="dimension" />
-        <attr name="tbv_right_text_font" format="string" />
-        <attr name="tbv_right_text_color" format="color" />
+        <attr name="tbvLeftImageSrc" format="reference" />
+        <attr name="tbvRightImageSrc" format="reference" />
+        <attr name="tbvTitleText" format="string" />
+        <attr name="tbvTitleTextSize" format="dimension" />
+        <attr name="tbvTitleTextFont" format="string" />
+        <attr name="tbvTitleTextColor" format="color" />
+        <attr name="tbvRightText" format="string" />
+        <attr name="tbvRightTextSize" format="dimension" />
+        <attr name="tbvRightTextFont" format="string" />
+        <attr name="tbvRightTextColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="EntranceView">
-        <attr name="ev_left_image_src" format="reference" />
-        <attr name="ev_right_arrow_src" format="reference" />
-        <attr name="ev_point_src" format="reference" />
-        <attr name="ev_text" format="string" />
-        <attr name="ev_text_color" format="color" />
-        <attr name="ev_text_size" format="dimension" />
-        <attr name="ev_text_font" format="string" />
-        <attr name="ev_right_text" format="string" />
-        <attr name="ev_right_text_size" format="dimension" />
-        <attr name="ev_right_text_font" format="string" />
-        <attr name="ev_right_text_color" format="color" />
-        <attr name="ev_divider_line" format="boolean" />
-        <attr name="ev_divider_line_color" format="color" />
+        <attr name="evLeftImageSrc" format="reference" />
+        <attr name="evRightArrowSrc" format="reference" />
+        <attr name="evPointSrc" format="reference" />
+        <attr name="evText" format="string" />
+        <attr name="evTextColor" format="color" />
+        <attr name="evTextSize" format="dimension" />
+        <attr name="evTextFont" format="string" />
+        <attr name="evRightText" format="string" />
+        <attr name="evRightTextSize" format="dimension" />
+        <attr name="evRightTextFont" format="string" />
+        <attr name="evRightTextColor" format="color" />
+        <attr name="evDividerLine" format="boolean" />
+        <attr name="evDividerLineColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="InputTextView">
+        <attr name="itvLeftImageSrc" format="reference" />
+        <attr name="itvRightImageSrc" format="reference" />
+        <attr name="itvHintText" format="string" />
+        <attr name="itvHintTextColor" format="color" />
+        <attr name="itvText" format="string" />
+        <attr name="itvTextColor" format="color" />
+        <attr name="itvTextSize" format="dimension" />
+        <attr name="itvTextFont" format="string" />
+        <attr name="itvErrorMessage" format="string" />
+        <attr name="itvErrorMessageTextColor" format="color" />
+        <attr name="itvErrorMessageTextSize" format="dimension" />
+        <attr name="itvErrorMessageVisibility">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+            <enum name="gone" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SubmitButtonView">
+        <attr name="sbvShowLoading" format="boolean" />
+        <attr name="sbvText" format="string" />
+        <attr name="sbvTextColor" format="color" />
+        <attr name="sbtTextSize" format="dimension" />
+        <attr name="sbvTextFont" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SwitchView">
+        <attr name="android:checked" />
+        <attr name="svText" format="string"/>
+        <attr name="svTextColor" format="color"/>
+        <attr name="svTextSize" format="dimension"/>
+        <attr name="svTextFont" format="reference"/>
+        <attr name="svIsChecked" format="boolean" />
+        <attr name="svDividerLine" format="boolean" />
+        <attr name="svDividerLineColor" format="color" />
     </declare-styleable>
 </resources>

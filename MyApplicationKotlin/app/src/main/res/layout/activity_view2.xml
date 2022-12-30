@@ -1,111 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view2.View2Activity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.myapplicationkotlin.view2.View2ViewModel" />
+
+    </data>
 
     <LinearLayout
-        android:id="@+id/ll_status"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view2.View2Activity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        app:contentInsetStart="@dimen/dp_0"
-        app:contentInsetStartWithNavigation="@dimen/dp_0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/icon_return_black"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <TextView
-            android:id="@+id/tv_title"
+        <LinearLayout
+            android:id="@+id/ll_status"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="?attr/actionBarSize"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/app_name" />
+            android:layout_height="1dp"
+            android:orientation="horizontal" />
 
-    </androidx.appcompat.widget.Toolbar>
 
-    <com.example.myapplicationkotlin.view2.TitleBarView
-        android:id="@+id/title_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tbv_left_image_src="@drawable/icon_return_black"
-        app:tbv_right_image_src="@drawable/icon_return_black"
-        app:tbv_right_text_font="@font/font_bold"
-        app:tbv_title_text="@string/notification_message"
-        app:tbv_title_text_size="@dimen/sp_18" />
+        <com.example.myapplicationkotlin.view2.TitleBarView
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tbvLeftImageSrc="@drawable/icon_return_black"
+            app:tbvRightImageSrc="@drawable/icon_return_black"
+            app:tbvRightTextFont="@font/font_bold"
+            app:tbvTitleText="@string/notification_message"
+            app:tbvTitleTextSize="@dimen/sp_18" />
 
-    <com.example.myapplicationkotlin.view2.TitleBarView
-        android:id="@+id/title_bar2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tbv_left_image_src="@drawable/icon_return_black"
-        app:tbv_right_image_src="@drawable/icon_return_black"
-        app:tbv_right_text="@string/app_name"
-        app:tbv_right_text_font="@font/font_bold"
-        app:tbv_title_text="@string/app_name"
-        app:tbv_title_text_size="@dimen/sp_18" />
+        <com.example.myapplicationkotlin.view2.TitleBarView
+            android:id="@+id/title_bar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tbvLeftImageSrc="@drawable/icon_return_black"
+            app:tbvRightImageSrc="@drawable/icon_return_black"
+            app:tbvRightText="@{viewModel.rightText}"
+            app:tbvRightTextFont="@font/font_bold"
+            app:tbvTitleText="@{viewModel.title}"
+            app:tbvTitleTextSize="@dimen/sp_18" />
 
-    <com.example.myapplicationkotlin.view2.EntranceView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_60"
-        android:layout_marginTop="@dimen/dp_10"
-        android:background="@drawable/bg_entrance_view"
-        android:clickable="true"
-        android:focusable="true"
-        android:paddingHorizontal="@dimen/dp_16"
-        app:ev_divider_line="true"
-        app:ev_text="@string/app_name"
-        app:ev_text_color="@color/red" />
+        <com.example.myapplicationkotlin.view2.EntranceView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:background="@drawable/bg_entrance_view"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="@dimen/dp_16"
+            app:evDividerLine="true"
+            app:evLeftImageSrc="@drawable/icon_mode_heat"
+            app:evRightArrowSrc="@drawable/icon_right_arrow_gray"
+            app:evText="@string/app_name" />
 
-    <com.example.myapplicationkotlin.view2.EntranceView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_60"
-        android:background="@drawable/bg_entrance_view"
-        android:clickable="true"
-        android:focusable="true"
-        android:paddingHorizontal="@dimen/dp_16"
-        app:ev_divider_line="true"
-        app:ev_left_image_src="@drawable/icon_mode_heat"
-        app:ev_right_arrow_src="@drawable/icon_right_arrow_gray"
-        app:ev_text="@string/app_name" />
+        <com.example.myapplicationkotlin.view2.EntranceView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:background="@drawable/bg_entrance_view"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="@dimen/dp_16"
+            app:evDividerLine="true"
+            app:evRightArrowSrc="@drawable/icon_right_arrow_gray"
+            app:evRightText="@string/title_activity_input"
+            app:evText="@string/app_name" />
 
-    <com.example.myapplicationkotlin.view2.EntranceView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_60"
-        android:background="@drawable/bg_entrance_view"
-        android:clickable="true"
-        android:focusable="true"
-        android:paddingHorizontal="@dimen/dp_16"
-        app:ev_divider_line="true"
-        app:ev_right_arrow_src="@drawable/icon_right_arrow_gray"
-        app:ev_right_text="@string/title_activity_input"
-        app:ev_text="@string/app_name" />
+        <com.example.myapplicationkotlin.view2.EntranceView
+            android:id="@+id/text_entrance_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:background="@drawable/bg_entrance_view"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="@dimen/dp_16"
+            app:evDividerLine="@{viewModel.show}"
+            app:evDividerLineColor="@color/red"
+            app:evPointSrc="@drawable/red_dot_8dp"
+            app:evRightArrowSrc="@drawable/icon_right_arrow_gray"
+            app:evRightText="@{viewModel.rightText}"
+            app:evRightTextColor="@color/teal_200"
+            app:evText="@{viewModel.title}" />
 
-    <com.example.myapplicationkotlin.view2.EntranceView
-        android:id="@+id/text_entrance_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_60"
-        android:background="@drawable/bg_entrance_view"
-        android:clickable="true"
-        android:focusable="true"
-        android:paddingHorizontal="@dimen/dp_16"
-        app:ev_divider_line="true"
-        app:ev_divider_line_color="@color/red"
-        app:ev_point_src="@drawable/red_dot_8dp"
-        app:ev_right_arrow_src="@drawable/icon_right_arrow_gray"
-        app:ev_right_text="@string/title_activity_input"
-        app:ev_right_text_color="@color/teal_200"
-        app:ev_text="@string/app_name" />
-</LinearLayout>
+        <com.example.myapplicationkotlin.view2.SubmitButtonView
+            android:id="@+id/btn_submit2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:clickable="true"
+            android:focusable="true"
+            app:sbvText="@{viewModel.title}"/>
+
+        <com.example.myapplicationkotlin.view2.InputTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_10"
+            app:itvHintText="@{viewModel.title}"
+            app:itvText="@={viewModel.text}"
+            app:itvErrorMessage="@{viewModel.errorMessage}"/>
+
+        <com.example.myapplicationkotlin.view2.InputTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_10"
+            app:itvLeftImageSrc="@drawable/icon_password"
+            app:itvRightImageSrc="@drawable/password_visible_selector"
+            app:itvHintText="@{viewModel.title}"
+            app:itvText="@={viewModel.text}"
+            app:itvErrorMessage="@{viewModel.errorMessage}"/>
+
+        <com.example.myapplicationkotlin.view2.SwitchView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            app:svIsChecked="@={viewModel.show}"
+            app:svText="@{viewModel.title}"/>
+        <Button
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="test"/>
+    </LinearLayout>
+</layout>

@@ -5,10 +5,9 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.BindingAdapter
 import com.example.myapplicationkotlin.R
-import com.example.myapplicationkotlin.SystemBarHelper
 import kotlinx.android.synthetic.main.title_bar_view.view.*
 
 /**
@@ -24,7 +23,7 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
         LayoutInflater.from(context).inflate(R.layout.title_bar_view, this)
         context.theme.obtainStyledAttributes(attributes, R.styleable.TitleBarView, 0, 0).apply {
             // 设置左图标资源
-            getResourceId(R.styleable.TitleBarView_tbv_left_image_src, -1).let {
+            getResourceId(R.styleable.TitleBarView_tbvLeftImageSrc, -1).let {
                 if (it == -1) {
                     iv_left.visibility = GONE
                 } else {
@@ -32,7 +31,7 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
                 }
             }
             // 设置右图标资源
-            getResourceId(R.styleable.TitleBarView_tbv_right_image_src, -1).let {
+            getResourceId(R.styleable.TitleBarView_tbvRightImageSrc, -1).let {
                 if (it == -1) {
                     iv_right.visibility = GONE
                 } else {
@@ -41,43 +40,43 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
             }
             // 设置标题
             tv_title.apply {
-                text = getString(R.styleable.TitleBarView_tbv_title_text)
+                text = getString(R.styleable.TitleBarView_tbvTitleText)
                 visibility = if (text.isNullOrEmpty()) GONE else VISIBLE
                 setTextSize(
                     TypedValue.COMPLEX_UNIT_PX, getDimension(
-                        R.styleable.TitleBarView_tbv_title_text_size,
+                        R.styleable.TitleBarView_tbvTitleTextSize,
                         context.resources.getDimensionPixelSize(R.dimen.sp_18).toFloat()
                     )
                 )
                 setTextColor(
                     getColor(
-                        R.styleable.TitleBarView_tbv_title_text_color,
+                        R.styleable.TitleBarView_tbvTitleTextColor,
                         context.resources.getColor(R.color.color_333333)
                     )
                 )
                 typeface = Typeface.create(
-                    getString(R.styleable.TitleBarView_tbv_title_text_font),
+                    getString(R.styleable.TitleBarView_tbvTitleTextFont),
                     Typeface.NORMAL
                 )
             }
             // 设置右文字
             tv_right.apply {
-                text = getString(R.styleable.TitleBarView_tbv_right_text)
+                text = getString(R.styleable.TitleBarView_tbvRightText)
                 visibility = if (text.isNullOrEmpty()) GONE else VISIBLE
                 setTextColor(
                     getColor(
-                        R.styleable.TitleBarView_tbv_right_text_color,
+                        R.styleable.TitleBarView_tbvRightTextColor,
                         context.resources.getColor(R.color.color_00c389)
                     )
                 )
                 setTextSize(
                     TypedValue.COMPLEX_UNIT_PX, getDimension(
-                        R.styleable.TitleBarView_tbv_right_text_size,
+                        R.styleable.TitleBarView_tbvRightTextSize,
                         context.resources.getDimensionPixelSize(R.dimen.sp_16).toFloat()
                     )
                 )
                 typeface = Typeface.create(
-                    getString(R.styleable.TitleBarView_tbv_right_text_font),
+                    getString(R.styleable.TitleBarView_tbvRightTextFont),
                     Typeface.NORMAL
                 )
             }
@@ -85,7 +84,7 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
     }
 
 
-    fun setLeftImageResource(image: Int) {
+    fun setTbvLeftImageSrc(image: Int) {
         iv_left.setImageResource(image)
     }
 
@@ -93,7 +92,7 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
         iv_left.setOnClickListener(onClickListener)
     }
 
-    fun setRightImageResource(image: Int) {
+    fun setTbvRightImageSrc(image: Int) {
         iv_right.setImageResource(image)
     }
 
@@ -101,80 +100,81 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
         iv_right.setOnClickListener(onClickListener)
     }
 
-    fun setTitle(title: String) {
+    fun setTbvTitleText(title: String){
         tv_title.text = title
+        tv_title.visibility = VISIBLE
     }
 
-    fun getTitle(): String {
+    fun getTbvTitleText(): String {
         return tv_title.text.toString()
     }
 
     /**
      * @param size 字体大小资源id
      */
-    fun setTitleTextSize(size: Int) {
+    fun setTbvTitleTextSize(size: Int) {
         tv_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(size))
     }
 
-    fun getTitleTextSize(): Float {
+    fun getTbvTitleTextSize(): Float {
         return tv_title.textSize
     }
 
     /**
      * @param color 颜色资源id
      */
-    fun setTitleTextColor(color: Int) {
+    fun setTbvTitleTextColor(color: Int) {
         tv_title.setTextColor(context.resources.getColor(color))
     }
 
-    fun getTitleTextColor(): Int {
+    fun getTbvTitleTextColor(): Int {
         return tv_title.currentTextColor
     }
 
-    fun setTitleTextFont(font: String) {
+    fun setTbvTitleTextFont(font: String) {
         tv_title.typeface = Typeface.create(font, Typeface.NORMAL)
     }
 
-    fun getTitleTextFont(): Typeface? {
+    fun getTbvTitleTextFont(): Typeface? {
         return tv_title.typeface
     }
 
-    fun setRightText(rightText: String) {
+    fun setTbvRightText(rightText: String) {
         tv_right.text = rightText
         tv_right.visibility = VISIBLE
     }
 
-    fun getRightText(): String {
+    fun getTbvRightText(): String {
         return tv_right.text.toString()
     }
 
     /**
      * @param size 字体大小资源id
      */
-    fun setRightTextSize(size: Int) {
+    fun setTbvRightTextSize(size: Int) {
         tv_right.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(size))
     }
 
-    fun getRightTextSize(): Float {
+    fun getTbvRightTextSize(): Float {
         return tv_right.textSize
     }
 
     /**
      * @param color 颜色资源id
      */
-    fun setRightTextColor(color: Int) {
+    fun setTbvRightTextColor(color: Int) {
         tv_right.setTextColor(context.resources.getColor(color))
     }
 
-    fun getRightTextColor(): Int {
+    fun getTbvRightTextColor(): Int {
         return tv_right.currentTextColor
     }
 
-    fun setRightTextFont(font: String) {
+    fun setTbvRightTextFont(font: String) {
         tv_right.typeface = Typeface.create(font, Typeface.NORMAL)
     }
 
-    fun getRightTextFont(): Typeface? {
+    fun getTbvRightTextFont(): Typeface? {
         return tv_right.typeface
     }
 

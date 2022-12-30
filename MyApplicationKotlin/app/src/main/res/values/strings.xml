@@ -20,4 +20,12 @@
     <string name="notification_title">Title</string>
     <string name="notification_message">This is notification message.This is notification message.This is notification message.</string>
     <string name="ticker_text">This is ticker text.</string>
+
+    <string name="mo">Mo</string>
+    <string name="tu">Tu</string>
+    <string name="we">We</string>
+    <string name="th">Th</string>
+    <string name="fr">Fr</string>
+    <string name="sa">Sa</string>
+    <string name="su">Su</string>
 </resources>

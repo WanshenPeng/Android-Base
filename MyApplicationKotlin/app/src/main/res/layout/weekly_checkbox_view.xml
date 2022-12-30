@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_mo"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:layout_weight="1"
+        android:background="@drawable/btn_green_gray_selector"
+        android:gravity="center"
+        android:text="@string/mo"
+        android:textAllCaps="false"
+        android:textColor="@drawable/btn_access_text_selector"
+        android:textSize="16sp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_tu"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:layout_weight="1"
+        android:background="@drawable/btn_green_gray_selector"
+        android:gravity="center"
+        android:text="@string/tu"
+        android:textAllCaps="false"
+        android:textColor="@drawable/btn_access_text_selector"
+        android:textSize="16sp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_we"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:layout_weight="1"
+        android:background="@drawable/btn_green_gray_selector"
+        android:gravity="center"
+        android:text="@string/we"
+        android:textAllCaps="false"
+        android:textColor="@drawable/btn_access_text_selector"
+        android:textSize="16sp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_th"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:layout_weight="1"
+        android:background="@drawable/btn_green_gray_selector"
+        android:gravity="center"
+        android:text="@string/th"
+        android:textAllCaps="false"
+        android:textColor="@drawable/btn_access_text_selector"
+        android:textSize="16sp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_fr"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:layout_weight="1"
+        android:background="@drawable/btn_green_gray_selector"
+        android:gravity="center"
+        android:text="@string/fr"
+        android:textAllCaps="false"
+        android:textColor="@drawable/btn_access_text_selector"
+        android:textSize="16sp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_sa"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_5"
+        android:layout_weight="1"
+        android:background="@drawable/btn_green_gray_selector"
+        android:gravity="center"
+        android:text="@string/sa"
+        android:textAllCaps="false"
+        android:textColor="@drawable/btn_access_text_selector"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_su"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_weight="1"
+        android:background="@drawable/btn_green_gray_selector"
+        android:gravity="center"
+        android:text="@string/su"
+        android:textAllCaps="false"
+        android:textColor="@drawable/btn_access_text_selector"
+        android:textSize="16sp" />
+</LinearLayout>
