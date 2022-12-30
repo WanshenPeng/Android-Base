@@ -62,15 +62,18 @@ class InputTextView(context: Context, attributeSet: AttributeSet) :
                 } else {
                     cb_right.visibility = VISIBLE
                     cb_right.background = context.resources.getDrawable(it)
+                    tv_input.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    tv_input.transformationMethod = PasswordTransformationMethod.getInstance()
+                    tv_input.setSelection(tv_input.text.length)
                 }
             }
             cb_right.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    tv_input.inputType=InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    tv_input.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
                     tv_input.transformationMethod = HideReturnsTransformationMethod.getInstance()
                     tv_input.setSelection(tv_input.text.length)
                 } else {
-                    tv_input.inputType=InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    tv_input.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
                     tv_input.transformationMethod = PasswordTransformationMethod.getInstance()
                     tv_input.setSelection(tv_input.text.length)
                 }
