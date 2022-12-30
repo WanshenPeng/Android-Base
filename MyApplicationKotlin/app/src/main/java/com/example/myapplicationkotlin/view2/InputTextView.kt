@@ -45,9 +45,9 @@ class InputTextView(context: Context, attributeSet: AttributeSet) :
         context.theme.obtainStyledAttributes(attributeSet, R.styleable.InputTextView, 0, 0).apply {
             getResourceId(R.styleable.InputTextView_itvLeftImageSrc, -1).let {
                 if (it == -1) {
-                    tv_input.setCompoundDrawables(null, null, null, null)
+                    tv_input.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
                 } else {
-                    tv_input.setCompoundDrawables(
+                    tv_input.setCompoundDrawablesWithIntrinsicBounds(
                         context.resources.getDrawable(it),
                         null,
                         null,
