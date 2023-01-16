@@ -20,5 +20,5 @@ class View2ViewModel:ViewModel() {
     val show = ObservableBoolean(false)
 
     val errorMessage = "this is errorMessage"
-    val text = ObservableField("asdasd")
+    val text = ObservableField("123456")
 }

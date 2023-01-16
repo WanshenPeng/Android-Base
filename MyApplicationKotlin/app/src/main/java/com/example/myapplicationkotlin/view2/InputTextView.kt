@@ -3,6 +3,7 @@ package com.example.myapplicationkotlin.view2
 import android.content.Context
 import android.graphics.Typeface
 import android.text.InputType
+import android.text.method.DigitsKeyListener
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
@@ -10,13 +11,21 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.RelativeLayout
+import android.view.inputmethod.EditorInfo
+import android.widget.CompoundButton
+import android.widget.TextView
+import android.widget.TextView.OnEditorActionListener
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import com.example.myapplicationkotlin.R
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.input_text_view.view.*
+import java.util.Locale
 
 /**
  * Author: Wanshenpeng
@@ -27,7 +36,7 @@ import kotlinx.android.synthetic.main.input_text_view.view.*
  * Wanshenpeng 2022/12/22 1.0 首次创建
  */
 class InputTextView(context: Context, attributeSet: AttributeSet) :
-    RelativeLayout(context, attributeSet) {
+    ConstraintLayout(context, attributeSet) {
     private var onInputChangeListener: InverseBindingListener? = null
     var etInput = ""
         set(value) {
@@ -62,20 +71,13 @@ class InputTextView(context: Context, attributeSet: AttributeSet) :
                 } else {
                     cb_right.visibility = VISIBLE
                     cb_right.background = context.resources.getDrawable(it)
-                    tv_input.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-                    tv_input.transformationMethod = PasswordTransformationMethod.getInstance()
-                    tv_input.setSelection(tv_input.text.length)
                 }
             }
             cb_right.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    tv_input.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
                     tv_input.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                    tv_input.setSelection(tv_input.text.length)
                 } else {
-                    tv_input.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
                     tv_input.transformationMethod = PasswordTransformationMethod.getInstance()
-                    tv_input.setSelection(tv_input.text.length)
                 }
             }
 
@@ -95,10 +97,26 @@ class InputTextView(context: Context, attributeSet: AttributeSet) :
                         context.resources.getColor(R.color.color_333333)
                     )
                 )
-                typeface = Typeface.create(
-                    getString(R.styleable.InputTextView_itvTextFont),
-                    Typeface.NORMAL
-                )
+//                typeface = Typeface.create(
+//                    getString(R.styleable.InputTextView_itvTextFont),
+//                    Typeface.NORMAL
+//                )
+                getString(R.styleable.InputTextView_itvTextFont)?.let {
+                    typeface = if (it.contains("res/font/")) {
+                        ResourcesCompat.getFont(
+                            context,
+                            getResourceId(
+                                R.styleable.InputTextView_itvTextFont,
+                                R.font.font_regular
+                            )
+                        )
+                    } else {
+                        Typeface.create(
+                            getString(R.styleable.InputTextView_itvTextFont),
+                            Typeface.NORMAL
+                        )
+                    }
+                }
                 setTextSize(
                     TypedValue.COMPLEX_UNIT_PX, getDimension(
                         R.styleable.InputTextView_itvTextSize,
@@ -107,7 +125,22 @@ class InputTextView(context: Context, attributeSet: AttributeSet) :
                 )
                 doOnTextChanged { text, start, count, after ->
                     etInput = text.toString()
+                    setSelection(start + after)
                 }
+
+                val inputType =
+                    getInt(R.styleable.InputTextView_android_inputType, InputType.TYPE_CLASS_TEXT)
+                this.inputType = inputType
+                if (isPasswordInputType(inputType)) {
+                    setTypeface(null, Typeface.NORMAL)
+                }
+
+                backgroundTintList = ContextCompat.getColorStateList(
+                    context, getResourceId(
+                        R.styleable.InputTextView_itvDividerLine,
+                        R.color.input_bottom_line_color_selector
+                    )
+                )
             }
 
             tv_error_message.apply {
@@ -124,19 +157,63 @@ class InputTextView(context: Context, attributeSet: AttributeSet) :
                         context.resources.getDimensionPixelSize(R.dimen.sp_14).toFloat()
                     )
                 )
-
-                visibility = getInt(R.styleable.InputTextView_itvErrorMessageVisibility, 2)
+                getString(R.styleable.InputTextView_itvErrorMessageTextFont)?.let {
+                    typeface = if (it.contains("res/font/")) {
+                        ResourcesCompat.getFont(
+                            context,
+                            getResourceId(
+                                R.styleable.InputTextView_itvErrorMessageTextFont,
+                                R.font.font_regular
+                            )
+                        )
+                    } else {
+                        Typeface.create(
+                            getString(R.styleable.InputTextView_itvErrorMessageTextFont),
+                            Typeface.NORMAL
+                        )
+                    }
+                }
+            }
+            when (getInt(R.styleable.InputTextView_itvErrorMessageVisibility, 2)) {
+                0 -> {
+                    tv_input.isSelected = true
+                    tv_error_message.visibility = View.VISIBLE
+                }
+                1 -> View.INVISIBLE
+                2 -> {
+                    tv_input.isSelected = false
+                    tv_error_message.visibility = View.GONE
+                }
+                else -> {
+                    tv_input.isSelected = false
+                    tv_error_message.visibility = View.GONE
+                }
             }
         }
     }
 
-//    fun setItvLeftImageSrc(image: Int) {
-//        iv_left.setImageResource(image)
-//    }
-//
-//    fun setItvRightImageSrc(image: Int) {
-//        iv_right.setImageResource(image)
-//    }
+    private fun isPasswordInputType(inputType: Int): Boolean {
+        val variation = inputType and (EditorInfo.TYPE_MASK_CLASS or EditorInfo.TYPE_MASK_VARIATION)
+        return (variation
+                == EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_VARIATION_PASSWORD)
+                || (variation
+                == EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_VARIATION_WEB_PASSWORD)
+                || (variation
+                == EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_VARIATION_PASSWORD)
+
+    }
+
+    fun setCheckBoxOnClickListener(onClickListener: CompoundButton.OnCheckedChangeListener) {
+        cb_right.setOnCheckedChangeListener(onClickListener)
+    }
+
+    fun setOnInputTextFocusChangeListener(onFocusChangeListener: OnFocusChangeListener) {
+        tv_input.onFocusChangeListener = onFocusChangeListener
+    }
+
+    fun setOnEditorActionListener(onEditorActionListener: OnEditorActionListener) {
+        tv_input.setOnEditorActionListener(onEditorActionListener)
+    }
 
     fun getItvHintText(): String {
         return tv_input.hint.toString()
@@ -196,6 +273,10 @@ class InputTextView(context: Context, attributeSet: AttributeSet) :
         tv_input.typeface = Typeface.create(font, Typeface.NORMAL)
     }
 
+    fun setItvTextFont(font: Int) {
+        tv_input.typeface = context.resources.getFont(font)
+    }
+
     fun getItvErrorMessage(): String {
         return tv_error_message.text.toString()
     }
@@ -238,12 +319,30 @@ class InputTextView(context: Context, attributeSet: AttributeSet) :
         tv_error_message.typeface = Typeface.create(font, Typeface.NORMAL)
     }
 
+    fun setItvErrorMessageTextFont(font: Int) {
+        tv_error_message.typeface = context.resources.getFont(font)
+    }
+
     fun getItvErrorMessageVisibility(): Int {
         return tv_error_message.visibility
     }
 
     fun setItvErrorMessageVisibility(visibility: Int) {
-        tv_error_message.visibility = visibility
+        when (visibility) {
+            0 -> {
+                tv_input.isSelected = true
+                tv_error_message.visibility = View.VISIBLE
+            }
+            1 -> View.INVISIBLE
+            2 -> {
+                tv_input.isSelected = false
+                tv_error_message.visibility = View.GONE
+            }
+            else -> {
+                tv_input.isSelected = false
+                tv_error_message.visibility = View.GONE
+            }
+        }
     }
 
     companion object {

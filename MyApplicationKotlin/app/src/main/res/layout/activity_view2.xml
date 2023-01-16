@@ -11,8 +11,7 @@
 
     </data>
 
-    <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,9 +31,12 @@
             android:layout_height="wrap_content"
             app:tbvLeftImageSrc="@drawable/icon_return_black"
             app:tbvRightImageSrc="@drawable/icon_return_black"
-            app:tbvRightTextFont="@font/font_bold"
+            app:tbvRightTextFont="casual"
             app:tbvTitleText="@string/notification_message"
-            app:tbvTitleTextSize="@dimen/sp_18" />
+            app:tbvTitleTextSize="@dimen/sp_18"
+            app:tbvRightText="@string/app_name"
+            app:tbvTitleTextMaxWidth="@dimen/dp_200"
+            app:tbvRightTextMaxWidth="@dimen/dp_100"/>
 
         <com.example.myapplicationkotlin.view2.TitleBarView
             android:id="@+id/title_bar2"
@@ -43,7 +45,7 @@
             app:tbvLeftImageSrc="@drawable/icon_return_black"
             app:tbvRightImageSrc="@drawable/icon_return_black"
             app:tbvRightText="@{viewModel.rightText}"
-            app:tbvRightTextFont="@font/font_bold"
+            app:tbvRightTextFont="@font/bebas"
             app:tbvTitleText="@{viewModel.title}"
             app:tbvTitleTextSize="@dimen/sp_18" />
 
@@ -53,8 +55,10 @@
             android:background="@drawable/bg_entrance_view"
             android:clickable="true"
             android:focusable="true"
-            android:paddingHorizontal="@dimen/dp_16"
+            app:evDividerLinePaddingHorizontal="@dimen/dp_16"
+            app:evContentPaddingHorizontal="@dimen/dp_16"
             app:evDividerLine="true"
+            app:evDividerLineColor="@color/red"
             app:evLeftImageSrc="@drawable/icon_mode_heat"
             app:evRightArrowSrc="@drawable/icon_right_arrow_gray"
             app:evText="@string/app_name" />
@@ -67,6 +71,7 @@
             android:focusable="true"
             android:paddingHorizontal="@dimen/dp_16"
             app:evDividerLine="true"
+            app:evDividerLineColor="@color/red"
             app:evRightArrowSrc="@drawable/icon_right_arrow_gray"
             app:evRightText="@string/title_activity_input"
             app:evText="@string/app_name" />
@@ -91,37 +96,48 @@
             android:id="@+id/btn_submit2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_60"
-            android:clickable="true"
-            android:focusable="true"
-            app:sbvText="@{viewModel.title}"/>
+            app:sbvBackground="@drawable/btn_accent_gray_selector"
+            app:sbvText="@{viewModel.title}" />
 
         <com.example.myapplicationkotlin.view2.InputTextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_60"
             android:layout_marginTop="@dimen/dp_10"
+            app:itvTextFont="@font/bebas"
+            android:inputType="number"
             app:itvHintText="@{viewModel.title}"
-            app:itvText="@={viewModel.text}"
-            app:itvErrorMessage="@{viewModel.errorMessage}"/>
-
-        <com.example.myapplicationkotlin.view2.InputTextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_60"
-            android:layout_marginTop="@dimen/dp_10"
             app:itvLeftImageSrc="@drawable/icon_password"
-            app:itvRightImageSrc="@drawable/password_visible_selector"
-            app:itvHintText="@{viewModel.title}"
-            app:itvText="@={viewModel.text}"
-            app:itvErrorMessage="@{viewModel.errorMessage}"/>
+            app:itvText="@string/app_name" />
+
+        <com.example.myapplicationkotlin.view2.InputTextView
+            android:id="@+id/input_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:inputType="textEmailAddress"
+            app:itvDividerLine="@color/input_bottom_line_color_selector2"
+            app:itvErrorMessage="@{viewModel.errorMessage}"
+            app:itvErrorMessageVisibility="@{viewModel.show? View.VISIBLE:View.GONE}"
+            app:itvLeftImageSrc="@drawable/icon_password"
+            app:itvRightImageSrc="@drawable/password_visible_selector"/>
 
         <com.example.myapplicationkotlin.view2.SwitchView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_60"
+            android:background="@color/red"
             app:svIsChecked="@={viewModel.show}"
-            app:svText="@{viewModel.title}"/>
+            app:svText="@{viewModel.title}" />
+
         <Button
             android:id="@+id/test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="test"/>
+            android:text="test" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:text="@string/app_name"
+            android:inputType="textEmailAddress"/>
     </LinearLayout>
 </layout>

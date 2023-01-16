@@ -3,9 +3,11 @@ package com.example.myapplicationkotlin.view2
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.example.myapplicationkotlin.R
 import kotlinx.android.synthetic.main.title_bar_view.view.*
@@ -18,7 +20,8 @@ import kotlinx.android.synthetic.main.title_bar_view.view.*
  * <author> <time> <version> <desc>
  * Wanshenpeng 2022/12/19 1.0 首次创建
  */
-class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayout(context, attributes) {
+class TitleBarView(context: Context, attributes: AttributeSet) :
+    ConstraintLayout(context, attributes) {
     init {
         LayoutInflater.from(context).inflate(R.layout.title_bar_view, this)
         context.theme.obtainStyledAttributes(attributes, R.styleable.TitleBarView, 0, 0).apply {
@@ -54,10 +57,27 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
                         context.resources.getColor(R.color.color_333333)
                     )
                 )
-                typeface = Typeface.create(
-                    getString(R.styleable.TitleBarView_tbvTitleTextFont),
-                    Typeface.NORMAL
-                )
+                getString(R.styleable.TitleBarView_tbvTitleTextFont)?.let {
+                    typeface = if (it.contains("res/font/")) {
+                        ResourcesCompat.getFont(
+                            context, getResourceId(
+                                R.styleable.TitleBarView_tbvTitleTextFont,
+                                R.font.font_regular
+                            )
+                        )
+                    } else {
+                        Typeface.create(
+                            getString(R.styleable.TitleBarView_tbvTitleTextFont),
+                            Typeface.NORMAL
+                        )
+                    }
+                }
+
+                val maxWidth =
+                    getDimension(R.styleable.TitleBarView_tbvTitleTextMaxWidth, 0F).toInt()
+                if (maxWidth != 0) {
+                    this.maxWidth = maxWidth
+                }
             }
             // 设置右文字
             tv_right.apply {
@@ -75,10 +95,33 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
                         context.resources.getDimensionPixelSize(R.dimen.sp_16).toFloat()
                     )
                 )
-                typeface = Typeface.create(
-                    getString(R.styleable.TitleBarView_tbvRightTextFont),
-                    Typeface.NORMAL
-                )
+                getString(R.styleable.TitleBarView_tbvRightTextFont)?.let {
+                    typeface = if (it.contains("res/font/")) {
+//                        context.resources.getFont(
+//                            getResourceId(
+//                                R.styleable.TitleBarView_tbvRightTextFont,
+//                                R.font.font_regular
+//                            )
+//                        )
+                        ResourcesCompat.getFont(
+                            context, getResourceId(
+                                R.styleable.TitleBarView_tbvRightTextFont,
+                                R.font.font_regular
+                            )
+                        )
+                    } else {
+                        Typeface.create(
+                            getString(R.styleable.TitleBarView_tbvRightTextFont),
+                            Typeface.NORMAL
+                        )
+                    }
+                }
+
+                val maxWidth =
+                    getDimension(R.styleable.TitleBarView_tbvRightTextMaxWidth, 0F).toInt()
+                if (maxWidth != 0) {
+                    this.maxWidth = maxWidth
+                }
             }
         }
     }
@@ -100,7 +143,7 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
         iv_right.setOnClickListener(onClickListener)
     }
 
-    fun setTbvTitleText(title: String){
+    fun setTbvTitleText(title: String) {
         tv_title.text = title
         tv_title.visibility = VISIBLE
     }
@@ -133,6 +176,10 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
 
     fun setTbvTitleTextFont(font: String) {
         tv_title.typeface = Typeface.create(font, Typeface.NORMAL)
+    }
+
+    fun setTbvTitleTextFont(font: Int){
+        tv_title.typeface = context.resources.getFont(font)
     }
 
     fun getTbvTitleTextFont(): Typeface? {
@@ -174,14 +221,17 @@ class TitleBarView(context: Context, attributes: AttributeSet) : ConstraintLayou
         tv_right.typeface = Typeface.create(font, Typeface.NORMAL)
     }
 
+    fun setTbvRightTextFont(font: Int){
+        tv_right.typeface = context.resources.getFont(font)
+    }
+
     fun getTbvRightTextFont(): Typeface? {
         return tv_right.typeface
     }
 
-    fun setRightTextClickListener(clickListener: OnClickListener){
+    fun setRightTextClickListener(clickListener: OnClickListener) {
         tv_right.setOnClickListener(clickListener)
     }
-
 
 
 }

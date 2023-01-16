@@ -18,12 +18,14 @@
         <attr name="tbvRightImageSrc" format="reference" />
         <attr name="tbvTitleText" format="string" />
         <attr name="tbvTitleTextSize" format="dimension" />
-        <attr name="tbvTitleTextFont" format="string" />
+        <attr name="tbvTitleTextFont" format="string|reference" />
         <attr name="tbvTitleTextColor" format="color" />
+        <attr name="tbvTitleTextMaxWidth" format="dimension" />
         <attr name="tbvRightText" format="string" />
         <attr name="tbvRightTextSize" format="dimension" />
-        <attr name="tbvRightTextFont" format="string" />
+        <attr name="tbvRightTextFont" format="string|reference" />
         <attr name="tbvRightTextColor" format="color" />
+        <attr name="tbvRightTextMaxWidth" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="EntranceView">
@@ -33,13 +35,15 @@
         <attr name="evText" format="string" />
         <attr name="evTextColor" format="color" />
         <attr name="evTextSize" format="dimension" />
-        <attr name="evTextFont" format="string" />
+        <attr name="evTextFont" format="string|reference" />
         <attr name="evRightText" format="string" />
         <attr name="evRightTextSize" format="dimension" />
-        <attr name="evRightTextFont" format="string" />
+        <attr name="evRightTextFont" format="string|reference" />
         <attr name="evRightTextColor" format="color" />
         <attr name="evDividerLine" format="boolean" />
         <attr name="evDividerLineColor" format="color" />
+        <attr name="evContentPaddingHorizontal" format="dimension" />
+        <attr name="evDividerLinePaddingHorizontal" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="InputTextView">
@@ -50,10 +54,13 @@
         <attr name="itvText" format="string" />
         <attr name="itvTextColor" format="color" />
         <attr name="itvTextSize" format="dimension" />
-        <attr name="itvTextFont" format="string" />
+        <attr name="itvTextFont" format="string|reference" />
+        <attr name="itvDividerLine" format="reference" />
+        <attr name="android:inputType" />
         <attr name="itvErrorMessage" format="string" />
         <attr name="itvErrorMessageTextColor" format="color" />
         <attr name="itvErrorMessageTextSize" format="dimension" />
+        <attr name="itvErrorMessageTextFont" format="string|reference" />
         <attr name="itvErrorMessageVisibility">
             <enum name="visible" value="0" />
             <enum name="invisible" value="1" />
@@ -63,20 +70,25 @@
 
     <declare-styleable name="SubmitButtonView">
         <attr name="sbvShowLoading" format="boolean" />
+        <attr name="sbvEnabled" format="boolean" />
         <attr name="sbvText" format="string" />
         <attr name="sbvTextColor" format="color" />
-        <attr name="sbtTextSize" format="dimension" />
-        <attr name="sbvTextFont" format="reference" />
+        <attr name="sbvTextSize" format="dimension" />
+        <attr name="sbvTextFont" format="string|reference" />
+        <attr name="sbvLoadingSrc" format="reference" />
+        <attr name="sbvBackground" format="reference|color" />
     </declare-styleable>
 
     <declare-styleable name="SwitchView">
         <attr name="android:checked" />
-        <attr name="svText" format="string"/>
-        <attr name="svTextColor" format="color"/>
-        <attr name="svTextSize" format="dimension"/>
-        <attr name="svTextFont" format="reference"/>
+        <attr name="svText" format="string" />
+        <attr name="svTextColor" format="color" />
+        <attr name="svTextSize" format="dimension" />
+        <attr name="svTextFont" format="string|reference" />
         <attr name="svIsChecked" format="boolean" />
         <attr name="svDividerLine" format="boolean" />
         <attr name="svDividerLineColor" format="color" />
+        <attr name="svContentPaddingHorizontal" format="dimension" />
+        <attr name="svDividerLinePaddingHorizontal" format="dimension" />
     </declare-styleable>
 </resources>

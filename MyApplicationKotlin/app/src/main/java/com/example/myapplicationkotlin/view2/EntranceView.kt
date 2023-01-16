@@ -5,11 +5,14 @@ import android.graphics.Typeface
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
+import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.marginStart
 import com.example.myapplicationkotlin.R
 import kotlinx.android.synthetic.main.entrance_view.view.*
 import kotlinx.android.synthetic.main.entrance_view.view.divider_line
-import kotlinx.android.synthetic.main.switch_view.view.*
 
 /**
  * Author: Wanshenpeng
@@ -20,7 +23,7 @@ import kotlinx.android.synthetic.main.switch_view.view.*
  * Wanshenpeng 2022/12/20 1.0 首次创建
  */
 class EntranceView(context: Context, attributes: AttributeSet) :
-    RelativeLayout(context, attributes) {
+    ConstraintLayout(context, attributes) {
     init {
         LayoutInflater.from(context).inflate(R.layout.entrance_view, this)
         context.theme.obtainStyledAttributes(attributes, R.styleable.EntranceView, 0, 0).apply {
@@ -46,10 +49,23 @@ class EntranceView(context: Context, attributes: AttributeSet) :
                         context.resources.getColor(R.color.color_333333)
                     )
                 )
-                typeface = Typeface.create(
-                    getString(R.styleable.EntranceView_evTextFont),
-                    Typeface.NORMAL
-                )
+//                typeface = Typeface.create(
+//                    getString(R.styleable.EntranceView_evTextFont),
+//                    Typeface.NORMAL
+//                )
+                getString(R.styleable.EntranceView_evTextFont)?.let {
+                    typeface = if (it.contains("res/font/")) {
+                        ResourcesCompat.getFont(
+                            context,
+                            getResourceId(R.styleable.EntranceView_evTextFont, R.font.font_regular)
+                        )
+                    } else {
+                        Typeface.create(
+                            getString(R.styleable.EntranceView_evTextFont),
+                            Typeface.NORMAL
+                        )
+                    }
+                }
             }
             tv_right.apply {
                 text = getString(R.styleable.EntranceView_evRightText)
@@ -66,10 +82,26 @@ class EntranceView(context: Context, attributes: AttributeSet) :
                         context.resources.getColor(R.color.color_999999)
                     )
                 )
-                typeface = Typeface.create(
-                    getString(R.styleable.EntranceView_evRightTextFont),
-                    Typeface.NORMAL
-                )
+//                typeface = Typeface.create(
+//                    getString(R.styleable.EntranceView_evRightTextFont),
+//                    Typeface.NORMAL
+//                )
+                getString(R.styleable.EntranceView_evTextFont)?.let {
+                    typeface = if (it.contains("res/font/")) {
+                        ResourcesCompat.getFont(
+                            context,
+                            getResourceId(
+                                R.styleable.EntranceView_evRightTextFont,
+                                R.font.font_regular
+                            )
+                        )
+                    } else {
+                        Typeface.create(
+                            getString(R.styleable.EntranceView_evRightTextFont),
+                            Typeface.NORMAL
+                        )
+                    }
+                }
             }
             getResourceId(R.styleable.EntranceView_evPointSrc, -1).let {
                 if (it == -1) {
@@ -88,14 +120,28 @@ class EntranceView(context: Context, attributes: AttributeSet) :
                 }
             }
 
-            divider_line.visibility =
-                if (getBoolean(R.styleable.EntranceView_evDividerLine, false)) VISIBLE else GONE
-            divider_line.setBackgroundColor(
-                getColor(
-                    R.styleable.EntranceView_evDividerLineColor,
-                    context.resources.getColor(R.color.color_ee)
+            divider_line.apply {
+                visibility =
+                    if (getBoolean(R.styleable.EntranceView_evDividerLine, false)) VISIBLE else GONE
+                setBackgroundColor(
+                    getColor(
+                        R.styleable.EntranceView_evDividerLineColor,
+                        context.resources.getColor(R.color.color_ee)
+                    )
                 )
-            )
+                val dividerLinePaddingHorizontal = getDimension(
+                    R.styleable.EntranceView_evDividerLinePaddingHorizontal,
+                    0f
+                ).toInt()
+                val params = layoutParams as ConstraintLayout.LayoutParams
+                params.setMargins(dividerLinePaddingHorizontal, 0, dividerLinePaddingHorizontal, 0)
+            }
+
+            val contentPaddingHorizontal =
+                getDimension(R.styleable.EntranceView_evContentPaddingHorizontal, 0f).toInt()
+//            val params = cl_content.layoutParams as ConstraintLayout.LayoutParams
+//            params.setMargins(contentPaddingHorizontal, 0, contentPaddingHorizontal, 0)
+            cl_content.setPadding(contentPaddingHorizontal, 0, contentPaddingHorizontal, 0)
         }
     }
 
@@ -154,6 +200,10 @@ class EntranceView(context: Context, attributes: AttributeSet) :
         tv_text.typeface = Typeface.create(font, Typeface.NORMAL)
     }
 
+    fun setEvTextFont(font: Int) {
+        tv_text.typeface = context.resources.getFont(font)
+    }
+
     fun getEvRightText(): String {
         return tv_right.text.toString()
     }
@@ -196,10 +246,15 @@ class EntranceView(context: Context, attributes: AttributeSet) :
         tv_right.typeface = Typeface.create(font, Typeface.NORMAL)
     }
 
-    fun setEvDividerLine(visibility: Boolean){
+    fun setEvRightTextFont(font: Int){
+        tv_right.typeface = context.resources.getFont(font)
+    }
+
+    fun setEvDividerLine(visibility: Boolean) {
         divider_line.visibility = if (visibility) VISIBLE else GONE
     }
-    fun setEvDividerLineColor(color: Int){
+
+    fun setEvDividerLineColor(color: Int) {
         divider_line.setBackgroundColor(context.resources.getColor(color))
     }
 

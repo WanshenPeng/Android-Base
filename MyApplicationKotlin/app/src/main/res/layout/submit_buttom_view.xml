@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/submit_button_view"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_44"
-    android:background="@drawable/bg_radius_color_accent">
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_loading"
@@ -13,17 +14,23 @@
         android:layout_height="20dp"
         android:layout_gravity="center"
         android:src="@drawable/icon_connecting"
-        tools:visibility="gone" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_submit"
+    <TextView
+        android:id="@+id/tv_submit"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="@drawable/btn_accent_gray_selector"
-        android:enabled="true"
+        android:layout_height="match_parent"
         android:fontFamily="@font/font_medium"
         android:gravity="center"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/sp_16" />
-</FrameLayout>
+        android:textColor="@color/red"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,38 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_switch"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:textColor="#333333"
-        android:textSize="16sp"
-        tools:text="switch_view" />
+        android:layout_height="match_parent">
 
-    <com.kyleduo.switchbutton.SwitchButton
-        android:id="@+id/sb_switch"
-        android:layout_width="@dimen/dp_46"
-        android:layout_height="@dimen/dp_29"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:checked="true"
-        app:kswBackDrawable="@drawable/selector_switch_back_drawable"
-        app:kswThumbColor="@color/white"
-        app:kswThumbHeight="@dimen/dp_25"
-        app:kswThumbWidth="@dimen/dp_25"
-        app:kswTintColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_switch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sb_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="switch_view" />
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/sb_switch"
+            android:layout_width="@dimen/dp_46"
+            android:layout_height="@dimen/dp_29"
+            android:checked="true"
+            app:kswBackDrawable="@drawable/selector_switch_back_drawable"
+            app:kswThumbColor="@color/white"
+            app:kswThumbHeight="@dimen/dp_25"
+            app:kswThumbWidth="@dimen/dp_25"
+            app:kswTintColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_switch"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:id="@+id/divider_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_0_5"
-        android:layout_below="@+id/tv_switch"
-        android:background="#eeeeee" />
-</RelativeLayout>
+        android:background="#eeeeee"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

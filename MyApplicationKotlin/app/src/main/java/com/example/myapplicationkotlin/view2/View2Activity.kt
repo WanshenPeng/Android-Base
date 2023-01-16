@@ -2,7 +2,9 @@ package com.example.myapplicationkotlin.view2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -12,11 +14,11 @@ import com.example.myapplicationkotlin.databinding.ActivityView2Binding
 import kotlinx.android.synthetic.main.activity_view2.*
 
 class View2Activity : AppCompatActivity() {
-    private lateinit var databinding : ActivityView2Binding
+    private lateinit var databinding: ActivityView2Binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_view2)
-        databinding = DataBindingUtil.setContentView(this,R.layout.activity_view2)
+        databinding = DataBindingUtil.setContentView(this, R.layout.activity_view2)
         SystemBarHelper.immersiveStatusBar(window, 0.0.toFloat())
         SystemBarHelper.setStatusBarDarkMode(this, true)
         SystemBarHelper.setHeightAndPadding(this, ll_status)
@@ -26,13 +28,12 @@ class View2Activity : AppCompatActivity() {
         }
         text_entrance_view.setEvTextSize(R.dimen.sp_10)
 
-        title_bar.setLeftImageOnClickListener{
+        title_bar.setLeftImageOnClickListener {
             Toast.makeText(this, "title_bar", Toast.LENGTH_SHORT).show()
         }
-        title_bar.setRightImageOnClickListener{
+        title_bar.setRightImageOnClickListener {
             Toast.makeText(this, "title_bar", Toast.LENGTH_SHORT).show()
         }
-
 
 
         val viewModel = ViewModelProvider(this).get(View2ViewModel::class.java)
@@ -43,10 +44,16 @@ class View2Activity : AppCompatActivity() {
             btn_submit2.showLoading()
         }
 
-        test.setOnClickListener{
+        test.setOnClickListener {
             Toast.makeText(this, viewModel.text.get(), Toast.LENGTH_SHORT).show()
-            viewModel.show.set(true)
+//            if (viewModel.show.get()) {
+//                viewModel.show.set(false)
+//            } else {
+//                viewModel.show.set(true)
+//            }
+            Log.i("View2Activity", "viewModel.show.get(): ${viewModel.show.get()}")
             btn_submit2.stopLoading()
+            input_text_view.setItvErrorMessageVisibility(View.VISIBLE)
         }
     }
 }
