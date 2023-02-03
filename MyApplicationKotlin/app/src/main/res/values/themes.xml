@@ -23,4 +23,30 @@
     <style name="Theme.MyApplicationKotlin.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MyApplicationKotlin.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="PermissionDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/Base.Animation.AppCompat.Dialog</item>
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮在窗口之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否显示title-->
+        <item name="android:windowNoTitle">true</item>
+        <!--dialog之外没有焦点的区域是否罩上黑色半透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:background">@drawable/shape_ios_dialog_bg</item>
+        <item name="buttonBarNegativeButtonStyle">@style/PermissionDialogNegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PermissionDialogPositiveButtonStyle</item>
+    </style>
+    <style name="PermissionDialogNegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:fontFamily">@font/font_medium</item>
+        <item name="fontFamily">@font/font_medium</item>
+        <item name="android:textColor">@color/ios_dialog_button_def_negative_color</item>
+    </style>
+    <style name="PermissionDialogPositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:fontFamily">@font/font_medium</item>
+        <item name="fontFamily">@font/font_medium</item>
+        <item name="android:textColor">@color/ios_dialog_button_def_positive_color</item>
+    </style>
 </resources>

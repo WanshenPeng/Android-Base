@@ -28,4 +28,10 @@
     <string name="fr">Fr</string>
     <string name="sa">Sa</string>
     <string name="su">Su</string>
+    <string name="capture">capture</string>
+    <string name="permission_tip_photo">Arize needs access to your camera so you can take pictures as your avatar.</string>
+    <string name="common_ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="gallery">gallery</string>
+    <string name="pick_file">pick file</string>
 </resources>

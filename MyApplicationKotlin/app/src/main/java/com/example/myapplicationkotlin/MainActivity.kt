@@ -14,6 +14,7 @@ import com.example.myapplication.handler.MyHandlerActivity
 import com.example.myapplication.lottie.LottieAnimationActivity
 import com.example.myapplication.permission.PermissionActivity
 import com.example.myapplicationkotlin.nested.NestedScrollView
+import com.example.myapplicationkotlin.picture.CamaraActivity
 import com.example.myapplicationkotlin.service.MyServiceActivity
 import com.example.myapplicationkotlin.view.MyViewActivity
 import com.example.myapplicationkotlin.view2.View2Activity
@@ -58,6 +59,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, View2Activity::class.java)
             startActivity(intent)
         }
+        findViewById<Button>(R.id.camara_view).setOnClickListener {
+            val intent = Intent(this, CamaraActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onStart() {
@@ -83,15 +88,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.i(TAG, "mainActivity destroy")
-    }
-
-    fun sendMessage(view: View) {
-        val editText = findViewById<EditText>(R.id.editTextTextPersonName)
-        val message = editText.text.toString()
-        val intent = Intent(this, DisplayMessageActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, message)
-        }
-        startActivity(intent)
     }
 
     fun intoInputActivity(view: View) {

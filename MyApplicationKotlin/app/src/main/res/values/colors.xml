@@ -22,4 +22,8 @@
     <color name="color_E9E9EA">#E9E9EA</color>
     <color name="colorAccentDark">#22c48e</color>
 
+    <color name="ios_dialog_button_def_positive_color">#22c48e</color>
+    <color name="ios_dialog_button_def_negative_color">#666666</color>
+
+
 </resources>
