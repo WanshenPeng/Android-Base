@@ -68,38 +68,40 @@ class PhotoUtilActivity : AppCompatActivity() {
                 loadPicture(photoUri)
             }
             TAKE_PICTURE_AND_CROP_REQUEST_CODE -> {
-                targetUri = PhotoUtil.uriFromFileName(this)
-                if (photoUri == null || targetUri == null) {
+//                targetUri = PhotoUtil.uriFromFileName(this)
+                if (photoUri == null) {
                     return
                 }
-                PhotoUtil.cropImage(
+                targetUri = PhotoUtil.cropImage(
                     this,
-                    photoUri!!,
-                    targetUri!!,
-                    CROP_BY_TAKE_PICTURE_REQUEST_CODE
+                    CROP_BY_TAKE_PICTURE_REQUEST_CODE,
+                    photoUri!!
                 )
             }
             CROP_BY_TAKE_PICTURE_REQUEST_CODE -> {
-                loadPicture(data?.data)
+//                loadPicture(data?.data)
+                // Android5 上不会返回数据，因此不能使用data?.data
+                loadPicture(targetUri)
             }
 
             CHOOSE_PICTURE_REQUEST_CODE -> {
                 loadPicture(data?.data)
             }
             CHOOSE_PICTURE_AND_CROP_REQUEST_CODE -> {
-                targetUri = PhotoUtil.uriFromFileName(this)
-                if (data?.data == null || targetUri == null) {
+//                targetUri = PhotoUtil.uriFromFileName(this)
+                if (data?.data == null) {
                     return
                 }
-                PhotoUtil.cropImage(
+                targetUri = PhotoUtil.cropImage(
                     this,
-                    data.data!!,
-                    targetUri!!,
-                    CROP_BY_CHOOSE_PICTURE_REQUEST_CODE
+                    CROP_BY_CHOOSE_PICTURE_REQUEST_CODE,
+                    data.data!!
                 )
             }
             CROP_BY_CHOOSE_PICTURE_REQUEST_CODE -> {
-                loadPicture(data?.data)
+//                loadPicture(data?.data)
+                // Android5 上不会返回数据，因此不能使用data?.data
+                loadPicture(targetUri)
             }
             CHOOSE_PICTURE_AND_COMPRESS_REQUEST_CODE -> {
                 val filePath = PhotoUtil.getUriPath(this, data?.data)

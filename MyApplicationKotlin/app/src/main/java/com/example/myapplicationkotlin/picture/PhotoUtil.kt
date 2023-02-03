@@ -83,7 +83,7 @@ object PhotoUtil {
     @AfterPermissionGranted(REQUEST_CAMERA_PERM)
     fun takePicture(activity: AppCompatActivity, requestCode: Int): Uri? {
         val permissions =
-            arrayOf(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         //api 28，26,24 需要权限Manifest.permission.WRITE_EXTERNAL_STORAGE
         var photoUri: Uri? = null
         if (hasPermission(activity, permissions)) {
@@ -126,22 +126,24 @@ object PhotoUtil {
      * @param requestCode [AppCompatActivity.onActivityResult]请求代码
      * @param outputX 裁剪后的X像素大小。默认为0，此时输出裁剪的图片大小
      * @param outputY 裁剪后的Y像素大小。默认为0，此时输出裁剪的图片大小
+     *
+     * @return 返回裁剪后输出图片的Uri。如果资源文件为null，则返回null
      */
     fun cropImage(
         activity: AppCompatActivity,
-        resourceUri: Uri,
-        outputUri: Uri,
         requestCode: Int,
+        resourceUri: Uri,
+        outputUri: Uri? = uriFromFileName(activity),
         outputX: Int = 0,
         outputY: Int = 0
-    ) {
+    ): Uri? {
         val intent = Intent("com.android.camera.action.CROP")
         intent.setDataAndType(resourceUri, "image/*")
 
         val res = intent.resolveActivity(activity.packageManager)
         if (res == null) {
             Log.i(TAG, "Not find resolveActivity for com.android.camera.action.CROP")
-            return
+            return null
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
@@ -164,6 +166,7 @@ object PhotoUtil {
         intent.putExtra("return-data", false)
 
         activity.startActivityForResult(intent, requestCode)
+        return outputUri
     }
 
     private fun hasPermission(context: Context, permissions: Array<String>): Boolean {
