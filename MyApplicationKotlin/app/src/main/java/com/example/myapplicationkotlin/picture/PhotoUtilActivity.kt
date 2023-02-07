@@ -5,17 +5,15 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.myapplicationkotlin.BuildConfig
 import com.example.myapplicationkotlin.R
 import top.zibin.luban.OnCompressListener
 import java.io.File
-import java.text.SimpleDateFormat
 
 
 class PhotoUtilActivity : AppCompatActivity() {
@@ -104,7 +102,7 @@ class PhotoUtilActivity : AppCompatActivity() {
                 loadPicture(targetUri)
             }
             CHOOSE_PICTURE_AND_COMPRESS_REQUEST_CODE -> {
-                val filePath = PhotoUtil.getUriPath(this, data?.data)
+                val filePath = FileUtils.getContentUriFilePath(this, data?.data)
 
                 PhotoUtil.imageCompressionWithLuban(this, filePath,
                     object : OnCompressListener {

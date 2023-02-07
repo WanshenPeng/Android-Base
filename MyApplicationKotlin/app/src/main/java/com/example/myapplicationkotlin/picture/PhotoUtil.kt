@@ -1,15 +1,17 @@
 package com.example.myapplicationkotlin.picture
 
 import android.Manifest
-import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
+import android.app.Activity
+import android.content.*
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.net.toFile
@@ -35,8 +37,8 @@ import java.util.*
  * Wanshenpeng 2023/1/31 1.0 首次创建
  */
 object PhotoUtil {
-    const val REQUEST_STORAGE_PERM = 10001
-    const val REQUEST_CAMERA_PERM = 10002
+    const val REQUEST_STORAGE_PERM = 10001 // 请求存储权限
+    const val REQUEST_CAMERA_PERM = 10002 // 请求相机权限
 
     const val TAG = "PhotoUtil"
 
@@ -54,7 +56,8 @@ object PhotoUtil {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
         if (hasPermission(activity, permissions)) {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             if (intent.resolveActivity(activity.packageManager) == null) {
                 Log.i(TAG, "Not find resolveActivity for ACTION_PICK.")
                 return
@@ -137,25 +140,39 @@ object PhotoUtil {
         outputX: Int = 0,
         outputY: Int = 0
     ): Uri? {
+        val filePath = FileUtils.getContentUriFilePath(activity, resourceUri)
+        val resourceFile = filePath?.let { File(it) }
+        val resourceUri2 = resourceFile?.let {
+            FileProvider.getUriForFile(
+                activity,
+                BuildConfig.APPLICATION_ID + ".file_provider",
+                it
+            )
+        }
+
         val intent = Intent("com.android.camera.action.CROP")
-        intent.setDataAndType(resourceUri, "image/*")
+        intent.setDataAndType(resourceUri2, "image/*")
 
         val res = intent.resolveActivity(activity.packageManager)
         if (res == null) {
             Log.i(TAG, "Not find resolveActivity for com.android.camera.action.CROP")
             return null
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-            activity.grantUriPermission(
-                res.packageName,
-                outputUri,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            )
+
+        val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+        intent.addFlags(flag)
+        val resInfoList = activity.packageManager
+            .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        for (resolveInfo in resInfoList) {
+            val packageName = resolveInfo.activityInfo.packageName
+            try {
+                activity.grantUriPermission(packageName, outputUri, flag)
+            } catch (e: Exception) {
+                continue
+            }
         }
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri)
-//        intent.setDataAndType(resourceUri, "image/*")
         intent.putExtra("aspectX", 1)
         intent.putExtra("aspectY", 1)
         intent.putExtra("outputX", outputX)

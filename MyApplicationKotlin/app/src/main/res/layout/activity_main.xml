@@ -54,195 +54,125 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/name" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:onClick="intoBaseWidgetActivity"
-        android:text="BaseWidgetActivity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintTop_toBottomOf="@+id/age">
 
-    <Button
-        android:id="@+id/lottie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="intoConnectionFailedActivity"
-        android:text="lottie"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.767"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.631" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/age">
 
-    <Button
-        android:id="@+id/async_task_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="120dp"
-        android:text="async_task"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoBaseWidgetActivity"
+                android:text="BaseWidgetActivity" />
 
-    <Button
-        android:id="@+id/handler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="60dp"
-        android:text="handler"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+            <Button
+                android:id="@+id/lottie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoConnectionFailedActivity"
+                android:text="lottie"
+                android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="intoAccessActivity"
-        android:text="Access"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.773"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.265" />
+            <Button
+                android:id="@+id/async_task_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="async_task"
+                android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/permission"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="intoConnectionFailedActivity"
-        android:text="permission"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.701" />
+            <Button
+                android:id="@+id/handler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="handler"
+                android:textAllCaps="false" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="intoWifiTestActivity"
-        android:text="wifiTest"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.773"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367" />
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoAccessActivity"
+                android:text="Access" />
 
-    <Button
-        android:id="@+id/my_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="12dp"
-        android:onClick="intoMyViewActivity"
-        android:text="myView"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+            <Button
+                android:id="@+id/permission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoConnectionFailedActivity"
+                android:text="permission"
+                android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:onClick="intoCreateAccessCodeActivity"
-        android:text="connection_failed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.254" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoWifiTestActivity"
+                android:text="wifiTest"
+                android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="intoNestedActivity"
-        android:text="Nested"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.185"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367" />
+            <Button
+                android:id="@+id/my_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoMyViewActivity"
+                android:text="myView"
+                android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/my_view2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="184dp"
-        android:onClick="intoMyViewActivity"
-        android:text="myView2"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoCreateAccessCodeActivity"
+                android:text="connection_failed" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="intoConnectionFailedActivity"
-        android:text="connection_failed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+            <Button
+                android:id="@+id/my_view2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoMyViewActivity"
+                android:text="myView2"
+                android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/service_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="68dp"
-        android:onClick="intoMyServiceActivity"
-        android:text="myService"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoConnectionFailedActivity"
+                android:text="connection_failed" />
 
-    <Button
-        android:id="@+id/web_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
-        android:onClick="intoWebViewActivity"
-        android:text="webView"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+            <Button
+                android:id="@+id/service_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoMyServiceActivity"
+                android:text="myService"
+                android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/camara_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="244dp"
-        android:text="camara"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+            <Button
+                android:id="@+id/web_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="intoWebViewActivity"
+                android:text="webView"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/camara_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="camara"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

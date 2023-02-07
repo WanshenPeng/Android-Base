@@ -13,7 +13,6 @@ import com.example.myapplication.handler.AsyncTaskActivity
 import com.example.myapplication.handler.MyHandlerActivity
 import com.example.myapplication.lottie.LottieAnimationActivity
 import com.example.myapplication.permission.PermissionActivity
-import com.example.myapplicationkotlin.nested.NestedScrollView
 import com.example.myapplicationkotlin.picture.CamaraActivity
 import com.example.myapplicationkotlin.service.MyServiceActivity
 import com.example.myapplicationkotlin.view.MyViewActivity
@@ -118,12 +117,6 @@ class MainActivity : AppCompatActivity() {
     fun intoAccessActivity(view: View) {
         val intent = Intent(this, AccessActivity::class.java)
         Log.i(TAG, "start AccessActivity from mainActivity")
-        startActivity(intent)
-    }
-
-    fun intoNestedActivity(view: View) {
-        val intent = Intent(this, NestedScrollView::class.java)
-        Log.i(TAG, "start AccessActivity from mainActivity ")
         startActivity(intent)
     }
 

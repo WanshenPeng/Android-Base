@@ -110,9 +110,6 @@
             android:name=".wifitest.WifiTestActivity"
             android:exported="false" />
         <activity
-            android:name=".nested.NestedScrollView"
-            android:exported="false" />
-        <activity
             android:name=".AccessActivity"
             android:exported="false" />
         <activity
