@@ -127,12 +127,12 @@ class CamaraActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
 
         Log.i(TAG, "onActivityResult")
-        if (resultCode != RESULT_OK) {
-            if (requestCode == REQUEST_IMAGE_CROP) {
-                targetUri?.let { PhotoUtil.deleteUri(this, it) }
-            }
-            return
-        }
+//        if (resultCode != RESULT_OK) {
+//            if (requestCode == REQUEST_IMAGE_CROP) {
+//                targetUri?.let { PhotoUtil.deleteUri(this, it) }
+//            }
+//            return
+//        }
 
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE -> {

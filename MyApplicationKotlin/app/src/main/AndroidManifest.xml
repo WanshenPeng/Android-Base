@@ -62,13 +62,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view2.View2Activity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".service.ForegroundServiceActivity"
             android:exported="false">
             <meta-data

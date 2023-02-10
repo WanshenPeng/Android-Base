@@ -1,7 +1,6 @@
 package com.example.myapplicationkotlin.picture
 
 import android.Manifest
-import android.app.Activity
 import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -10,11 +9,15 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.ActivityResultRegistry
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.net.toFile
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import com.example.myapplicationkotlin.BuildConfig
 import com.example.myapplicationkotlin.R
 import pub.devrel.easypermissions.AfterPermissionGranted
@@ -36,21 +39,41 @@ import java.util.*
  * <author> <time> <version> <desc>
  * Wanshenpeng 2023/1/31 1.0 首次创建
  */
-object PhotoUtil {
-    const val REQUEST_STORAGE_PERM = 10001 // 请求存储权限
-    const val REQUEST_CAMERA_PERM = 10002 // 请求相机权限
+class PhotoUtil(private val registry: ActivityResultRegistry) : DefaultLifecycleObserver {
+    companion object {
+        const val REQUEST_STORAGE_PERM = 10001 // 请求存储权限
+        const val REQUEST_CAMERA_PERM = 10002 // 请求相机权限
 
-    const val TAG = "PhotoUtil"
+        const val TAG = "PhotoUtil"
+    }
+
+    interface DoOnFinishListener {
+        fun doOnFinish(result: ActivityResult)
+    }
+
+    lateinit var doOnFinishListener: DoOnFinishListener
+
+    lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    override fun onCreate(owner: LifecycleOwner) {
+        resultLauncher =
+            registry.register("key", owner, ActivityResultContracts.StartActivityForResult()) {
+                if (!this::doOnFinishListener.isInitialized) {
+                    Log.i(TAG, "doOnAfter is not initialized")
+                    return@register
+                }
+                doOnFinishListener.doOnFinish(it)
+            }
+    }
 
 
     /**
      * 通过[AppCompatActivity.startActivityForResult]启动相册相关的intent，需配合[AppCompatActivity.onActivityResult]使用
      *
      * @param activity
-     * @param requestCode [AppCompatActivity.onActivityResult]请求代码
+     * @param doOnFinishListener 回调接口
      */
     @AfterPermissionGranted(REQUEST_STORAGE_PERM)
-    fun choosePicture(activity: AppCompatActivity, requestCode: Int) {
+    fun choosePicture(activity: AppCompatActivity, doOnFinishListener: DoOnFinishListener) {
         val permissions = arrayOf(
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -62,7 +85,9 @@ object PhotoUtil {
                 Log.i(TAG, "Not find resolveActivity for ACTION_PICK.")
                 return
             }
-            activity.startActivityForResult(intent, requestCode)
+            this.doOnFinishListener = doOnFinishListener
+            resultLauncher.launch(intent)
+//            activity.startActivityForResult(intent, requestCode)
         } else {
             EasyPermissions.requestPermissions(
                 PermissionRequest.Builder(activity, REQUEST_STORAGE_PERM, *permissions)
@@ -79,12 +104,12 @@ object PhotoUtil {
      * 通过[AppCompatActivity.startActivityForResult]启动相机相关的intent，需配合[AppCompatActivity.onActivityResult]使用
      *
      * @param activity
-     * @param requestCode [AppCompatActivity.onActivityResult]请求代码
+     * @param doOnFinishListener 回调接口
      *
      * @return 返回照片Uri，如果无权限或无相机应用则返回null
      */
     @AfterPermissionGranted(REQUEST_CAMERA_PERM)
-    fun takePicture(activity: AppCompatActivity, requestCode: Int): Uri? {
+    fun takePicture(activity: AppCompatActivity, doOnFinishListener: DoOnFinishListener): Uri? {
         val permissions =
             arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         //api 28，26,24 需要权限Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -103,7 +128,9 @@ object PhotoUtil {
                 photoUri,
                 Intent.FLAG_GRANT_WRITE_URI_PERMISSION
             )
-            activity.startActivityForResult(intent, requestCode)
+            this.doOnFinishListener = doOnFinishListener
+            resultLauncher.launch(intent)
+//            activity.startActivityForResult(intent, requestCode)
         } else {
             EasyPermissions.requestPermissions(
                 PermissionRequest.Builder(activity, REQUEST_CAMERA_PERM, *permissions)
@@ -126,7 +153,7 @@ object PhotoUtil {
      * @param activity
      * @param resourceUri 需要裁剪的图片
      * @param outputUri 裁剪后输出的图片
-     * @param requestCode [AppCompatActivity.onActivityResult]请求代码
+     * @param doOnFinishListener 回调接口
      * @param outputX 裁剪后的X像素大小。默认为0，此时输出裁剪的图片大小
      * @param outputY 裁剪后的Y像素大小。默认为0，此时输出裁剪的图片大小
      *
@@ -134,20 +161,23 @@ object PhotoUtil {
      */
     fun cropImage(
         activity: AppCompatActivity,
-        requestCode: Int,
         resourceUri: Uri,
+        doOnFinishListener: DoOnFinishListener,
         outputUri: Uri? = uriFromFileName(activity),
         outputX: Int = 0,
         outputY: Int = 0
     ): Uri? {
-        val filePath = FileUtils.getContentUriFilePath(activity, resourceUri)
-        val resourceFile = filePath?.let { File(it) }
-        val resourceUri2 = resourceFile?.let {
-            FileProvider.getUriForFile(
-                activity,
-                BuildConfig.APPLICATION_ID + ".file_provider",
-                it
-            )
+        var resourceUri2 :Uri? = resourceUri
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !resourceUri.toString().contains(BuildConfig.APPLICATION_ID + ".file_provider")) {
+            val filePath = FileUtils.getContentUriFilePath(activity, resourceUri)
+            val resourceFile = filePath?.let { File(it) }
+            resourceUri2 = resourceFile?.let {
+                FileProvider.getUriForFile(
+                    activity,
+                    BuildConfig.APPLICATION_ID + ".file_provider",
+                    it
+                )
+            }
         }
 
         val intent = Intent("com.android.camera.action.CROP")
@@ -182,7 +212,9 @@ object PhotoUtil {
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
         intent.putExtra("return-data", false)
 
-        activity.startActivityForResult(intent, requestCode)
+        this.doOnFinishListener = doOnFinishListener
+        resultLauncher.launch(intent)
+//        activity.startActivityForResult(intent, requestCode)
         return outputUri
     }
 
