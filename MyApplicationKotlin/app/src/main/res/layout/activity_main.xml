@@ -172,6 +172,13 @@
                 android:layout_height="wrap_content"
                 android:text="camara"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_compose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Compose UI"
+                android:textAllCaps="false" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -1,14 +1,15 @@
 package com.example.myapplicationkotlin
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.MainThread
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.handler.AsyncTaskActivity
 import com.example.myapplication.handler.MyHandlerActivity
 import com.example.myapplication.lottie.LottieAnimationActivity
@@ -18,7 +19,9 @@ import com.example.myapplicationkotlin.service.MyServiceActivity
 import com.example.myapplicationkotlin.view.MyViewActivity
 import com.example.myapplicationkotlin.webview.WebViewActivity
 import com.example.myapplicationkotlin.wifitest.WifiTestActivity
-import java.time.LocalTime
+import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 const val EXTRA_MESSAGE = "com.example.myapplicationkotlin.MESSAGE"
 const val NAME = "com.example.myapplicationkotlin.NAME"
@@ -54,8 +57,16 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         findViewById<Button>(R.id.camara_view).setOnClickListener {
-            val intent = Intent(this, CamaraActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, CamaraActivity::class.java)
+//            startActivity(intent)
+            io.reactivex.Observable.fromCallable{
+                null
+            }.subscribeOn(Schedulers.io())
+                .subscribe({
+                   Log.i("TAG", "true")
+                },{
+                    it.printStackTrace()
+                })
         }
     }
 
@@ -126,12 +137,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun intoMyViewActivity(view: View){
+    fun intoMyViewActivity(view: View) {
         val intent = Intent(this, MyViewActivity::class.java)
         startActivity(intent)
     }
 
-    fun intoMyServiceActivity(view: View){
+    fun intoMyServiceActivity(view: View) {
         val intent = Intent(this, MyServiceActivity::class.java)
         startActivity(intent)
     }

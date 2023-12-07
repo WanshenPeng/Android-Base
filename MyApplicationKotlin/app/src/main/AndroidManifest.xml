@@ -41,6 +41,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".compose.ComposeTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".picture.PhotoUtilActivity"
             android:exported="false">
             <meta-data
